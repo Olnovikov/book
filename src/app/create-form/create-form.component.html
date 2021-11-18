@@ -1,0 +1,70 @@
+<form action="" [formGroup]="createForm" (ngSubmit)="submit()">
+  <div class="form-control">
+    <p>введите название книги</p>
+    <input type="text" formControlName="name" />
+    <div
+      class="validation"
+      *ngIf="createForm.get('name')?.invalid && createForm.get('name')?.touched"
+    >
+      <small *ngIf="createForm.get('name')?.errors?.required">
+        Поле не может быть пустым</small
+      >
+    </div>
+  </div>
+  <div class="form-control">
+    <p>введите автора</p>
+    <input type="text" formControlName="author" />
+    <div
+      class="validation"
+      *ngIf="
+        createForm.get('author')?.invalid && createForm.get('author')?.touched
+      "
+    >
+      <small *ngIf="createForm.get('author')?.errors?.required">
+        Поле не может быть пустым</small
+      >
+    </div>
+  </div>
+  <div class="form-control">
+    <p>введите год написания в формате "уууу"</p>
+    <input type="number" formControlName="year" />
+    <div
+      class="validation"
+      *ngIf="createForm.get('year')?.invalid && createForm.get('year')?.touched"
+    >
+      <small *ngIf="createForm.get('year')?.errors?.required">
+        Поле не может быть пустым</small
+      >
+      <small *ngIf="createForm.get('year')?.errors?.pattern">
+        Год должен быть в формате "уууу"</small
+      >
+
+    </div>
+  </div>
+  <div class="form-control">
+    <p>введите описанние книги</p>
+    <input type="text" formControlName="description" />
+    <div class="validation"></div>
+  </div>
+  <div class="form-control">
+    <p>выберите жанры</p>
+  <ng-select class="select"
+  formControlName="genres"
+  [multiple]='true'
+  >
+    <ng-option *ngFor="let genre of genresList">{{genre.name}}</ng-option>
+  </ng-select>
+  <div
+  class="validation"
+  *ngIf="
+    createForm.get('genres')?.invalid && createForm.get('genres')?.touched
+  "
+>
+  <small *ngIf="createForm.get('genres')?.errors?.required">
+    Поле не может быть пустым</small
+  >
+</div>
+  </div>
+
+  <button type="submit" [disabled]="createForm.invalid">Создать книгу</button>
+</form>

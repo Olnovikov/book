@@ -1,0 +1,2 @@
+<app-create-form (createdBook)="getNewBooks($event)"></app-create-form>
+<app-book *ngFor="let book of booksList" [book]='book'></app-book>
