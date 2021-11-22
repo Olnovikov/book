@@ -4,4 +4,4 @@
 <p>{{book.description}}</p>
 <div *ngFor="let genre of book.genres">{{genre.name}}</div>
 <button>Редактировать книгу</button>
-<button>Удалить книгу</button>
+<button (click)=" this.deletedBook.emit(this.book)">Удалить книгу</button>

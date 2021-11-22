@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookOperationsService } from '../book-operations.service';
 import { genres } from '../data';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
@@ -12,15 +11,8 @@ import { Genre } from '../interfaces/genre';
 })
 export class CreateFormComponent implements OnInit {
 
-  constructor(public bookOperationsServices:BookOperationsService) { }
+  constructor() { }
 createForm:FormGroup
-newBook:Book={
-  name: '',
-  author: '',
-  year: 0,
-  genres: [],
-  description:''
-}
 genresList:Genre[]=genres
 @Output() createdBook:EventEmitter<Book> = new EventEmitter
   ngOnInit(): void {
@@ -33,13 +25,8 @@ genresList:Genre[]=genres
     })
   }
 submit(){
-  this.newBook.name=this.createForm.value.name
-  this.newBook.author=this.createForm.value.author
-  this.newBook.year=this.createForm.value.year
-  this.newBook.description=this.createForm.value.description
-  this.newBook.genres=this.bookOperationsServices.getGenres(this.createForm.value.genres,this.genresList)
+  this.createdBook.emit(this.createForm.value)
   this.createForm.reset()
-  this.createdBook.emit(this.newBook)
 
 
 

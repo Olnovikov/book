@@ -38,7 +38,6 @@
       <small *ngIf="createForm.get('year')?.errors?.pattern">
         Год должен быть в формате "уууу"</small
       >
-
     </div>
   </div>
   <div class="form-control">
@@ -48,22 +47,19 @@
   </div>
   <div class="form-control">
     <p>выберите жанры</p>
-  <ng-select class="select"
-  formControlName="genres"
-  [multiple]='true'
-  >
-    <ng-option *ngFor="let genre of genresList">{{genre.name}}</ng-option>
-  </ng-select>
-  <div
-  class="validation"
-  *ngIf="
-    createForm.get('genres')?.invalid && createForm.get('genres')?.touched
-  "
->
-  <small *ngIf="createForm.get('genres')?.errors?.required">
-    Поле не может быть пустым</small
-  >
-</div>
+    <ng-select class="select" formControlName="genres" [multiple]="true">
+      <ng-option *ngFor="let genre of genresList"[value]='genre'>{{ genre.name }}</ng-option>
+    </ng-select>
+    <div
+      class="validation"
+      *ngIf="
+        createForm.get('genres')?.invalid && createForm.get('genres')?.touched
+      "
+    >
+      <small *ngIf="createForm.get('genres')?.errors?.required">
+        Поле не может быть пустым</small
+      >
+    </div>
   </div>
 
   <button type="submit" [disabled]="createForm.invalid">Создать книгу</button>
