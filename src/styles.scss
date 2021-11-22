@@ -3,3 +3,12 @@
 
 *{padding: 0;
 margin: 0;}
+
+input {
+  &.ng-invalid.ng-touched{border: 1px solid red;}
+  &.ng-valid.ng-touched{border: 1px solid green;}
+}
+.select{
+  width: 230px;
+  padding:10px 0px;
+}

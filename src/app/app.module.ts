@@ -6,16 +6,21 @@ import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
 import { ListComponent } from './list/list.component';
 import { CreateFormComponent } from './create-form/create-form.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
     ListComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    SearchFormComponent,
+
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule

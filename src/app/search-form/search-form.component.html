@@ -1,0 +1,43 @@
+<form action="" [formGroup]="searchForm" (ngSubmit)="search()">
+  <div class="form-control">
+    <p>введите название книги</p>
+    <input type="text" formControlName="name" />
+  </div>
+
+  <div class="form-control">
+    <p>введите автора</p>
+    <input type="text" formControlName="author" />
+  </div>
+
+  <div class="form-control">
+    <p>год книги от в формате "уууу"</p>
+    <input type="number" formControlName="yearFrom" />
+    <div
+      class="validation"
+      *ngIf="searchForm.get('yearFrom')?.invalid && searchForm.get('yearFrom')?.touched"
+    >
+      <small *ngIf="searchForm.get('yearFrom')?.errors?.pattern">
+        Год должен быть в формате "уууу"</small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <p>год книги до в формате "уууу"</p>
+    <input type="number" formControlName="yearTo" />
+    <div
+      class="validation"
+      *ngIf="searchForm.get('yearTo')?.invalid && searchForm.get('yearTo')?.touched">
+      <small *ngIf="searchForm.get('yearTo')?.errors?.pattern">
+        Год должен быть в формате "уууу"</small
+      >
+    </div>
+  </div>
+  <div class="form-control">
+    <p>выберите жанры</p>
+    <ng-select class="select" formControlName="genres" [multiple]="true">
+      <ng-option *ngFor="let genre of genresList"[value]='genre'>{{ genre.name }}</ng-option>
+    </ng-select>
+    </div>
+
+  <button type="submit">Найти книгу</button>
+</form>

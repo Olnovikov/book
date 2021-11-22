@@ -1,5 +1,13 @@
+<div class="forms">
 <app-create-form (createdBook)="getCreatedBook($event)"></app-create-form>
-<app-book (deletedBook)="getDeleteBook($event)" *ngFor="let book of ShowbooksList" [book]='book'></app-book>
-<div *ngIf="pages.length!==1">
-<div (click)="goToPage(page)" *ngFor="let page of pages" >{{page}}</div>
+<app-search-form></app-search-form>
 </div>
+<app-book (deletedBook)="getDeleteBook($event)" *ngFor="let book of booksList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'></app-book>
+<div *ngIf="booksList.length>itemsPerPage">
+<pagination-controls (pageChange)="page = $event"
+(pageBoundsCorrection)="page = $event"
+previousLabel=""
+nextLabel=""
+></pagination-controls>
+</div>
+
