@@ -1,3 +1,5 @@
 <app-create-form (createdBook)="getCreatedBook($event)"></app-create-form>
 <app-book (deletedBook)="getDeleteBook($event)" *ngFor="let book of ShowbooksList" [book]='book'></app-book>
+<div *ngIf="pages.length!==1">
 <div (click)="goToPage(page)" *ngFor="let page of pages" >{{page}}</div>
+</div>
