@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../interfaces/book';
+import { Genre } from '../interfaces/genre';
 import { SearchParams } from '../interfaces/searchParams';
 
 @Component({
@@ -32,42 +33,36 @@ export class ListComponent implements OnInit {
       this.listParam = undefined;
     } else {
       this.listParam = searchParams;
-      console.log(searchParams)
+      let filtredGenres = searchParams.genres.map((res: Genre) => {
+        return res.name;
+      });
 
       this.searchBooksList = this.booksList
         .filter((book) => {
-          if (searchParams.name !== null)
-            return book.name.includes(searchParams.name)
-          else return this.searchBooksList
+          if (searchParams.name) return book.name.includes(searchParams.name);
+          else return true;
         })
         .filter((book) => {
-          if (searchParams.author !== null)
-            return book.author.includes(searchParams.author)
-          else return this.searchBooksList
+          if (searchParams.author)
+            return book.author.includes(searchParams.author);
+          else return true;
         })
         .filter((book) => {
-          if (searchParams.yearFrom !== null)
-            return book.year >= searchParams.yearFrom
-          else return this.searchBooksList
+          if (searchParams.yearFrom) return book.year >= searchParams.yearFrom;
+          else return true;
         })
         .filter((book) => {
-          if (searchParams.yearTo !== null)
-            return book.year < searchParams.yearTo;
-          else return this.searchBooksList
+          if (searchParams.yearTo) return book.year < searchParams.yearTo;
+          else return true;
         })
-        // .filter((book) => {
-        //   if (searchParams.genres.length !== 0)
 
-
-        //     return book.genres.some( (name:string) => book.name.includes(name) )
-
-
-        //   else return this.searchBooksList
-        // })
-
-
-
+        .filter((book) =>
+          filtredGenres.some((name: string) => {
+            return book.genres.some((genre) => {
+              return genre.name.includes(name);
+            });
+          })
+        );
     }
   }
 }
-

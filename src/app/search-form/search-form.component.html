@@ -39,6 +39,6 @@
     </ng-select>
     </div>
 
-  <button type="submit">Найти книгу</button>
-  <button type="reset"(click)="reset()" >Сброс</button>
+  <button type="submit" [disabled]="!this.searchForm.value.name&&!this.searchForm.value.author&&!this.searchForm.value.yearTo&&!this.searchForm.value.yearFrom&&!this.searchForm.value.genres">Найти книгу</button>
+  <button type="reset"(click)="reset()" [disabled]="!this.searchForm.value.name&&!this.searchForm.value.author&&!this.searchForm.value.yearTo&&!this.searchForm.value.yearFrom&&!this.searchForm.value.genres" >Сброс</button>
 </form>

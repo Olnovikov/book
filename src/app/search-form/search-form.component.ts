@@ -17,11 +17,12 @@ export class SearchFormComponent implements OnInit {
   @Output() searchParams:EventEmitter<SearchParams> = new EventEmitter
   ngOnInit(): void {
     this.searchForm=new FormGroup({
-      name: new FormControl(''),
-      author: new FormControl(''),
-      yearFrom: new FormControl('',[Validators.pattern(/^[0-9]{4}$/)]),
-      yearTo: new FormControl('',Validators.pattern(/^[0-9]{4}$/)),
-      genres:new FormControl('')
+      name: new FormControl(null),
+      author: new FormControl(null),
+      yearFrom: new FormControl(null,[Validators.pattern(/^[0-9]{4}$/)]),
+      yearTo: new FormControl(null,Validators.pattern(/^[0-9]{4}$/)),
+      genres:new FormControl(null)
+
       })
   }
 reset(){
