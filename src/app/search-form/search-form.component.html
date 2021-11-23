@@ -1,4 +1,4 @@
-<form action="" [formGroup]="searchForm" (ngSubmit)="search()">
+<form action="" [formGroup]="searchForm" (ngSubmit)="this.searchParams.emit(this.searchForm.value)">
   <div class="form-control">
     <p>введите название книги</p>
     <input type="text" formControlName="name" />
@@ -40,4 +40,5 @@
     </div>
 
   <button type="submit">Найти книгу</button>
+  <button type="reset"(click)="reset()" >Сброс</button>
 </form>

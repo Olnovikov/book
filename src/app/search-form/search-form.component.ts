@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { genres } from '../data';
 import { Genre } from '../interfaces/genre';
+import { SearchParams } from '../interfaces/searchParams';
 
 @Component({
   selector: 'app-search-form',
@@ -13,6 +14,7 @@ export class SearchFormComponent implements OnInit {
   constructor() { }
   searchForm:FormGroup
   genresList:Genre[]=genres
+  @Output() searchParams:EventEmitter<SearchParams> = new EventEmitter
   ngOnInit(): void {
     this.searchForm=new FormGroup({
       name: new FormControl(''),
@@ -22,7 +24,7 @@ export class SearchFormComponent implements OnInit {
       genres:new FormControl('')
       })
   }
-search(){
-  console.log(this.searchForm.value)
+reset(){
+  this.searchParams.emit(undefined)
 }
 }
