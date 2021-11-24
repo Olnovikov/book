@@ -29,40 +29,35 @@ export class ListComponent implements OnInit {
     );
   }
   search(searchParams?: SearchParams) {
-    if (!searchParams) {
+console.log(searchParams)
+    if (searchParams?.name==''&&searchParams?.author==''&&searchParams?.yearFrom==0&&searchParams?.yearTo==0&&searchParams?.genres.length==0) {
       this.listParam = undefined;
     } else {
       this.listParam = searchParams;
-      let filtredGenres = searchParams.genres.map((res: Genre) => {
+      let filtredGenres = searchParams?.genres.map((res: Genre) => {
         return res.name;
       });
 
       this.searchBooksList = this.booksList
         .filter((book) => {
-          if (searchParams.name) return book.name.includes(searchParams.name);
+          if (searchParams?.name) return book.name.includes(searchParams.name);
           else return true;
         })
         .filter((book) => {
-          if (searchParams.author)
+          if (searchParams?.author)
             return book.author.includes(searchParams.author);
           else return true;
         })
         .filter((book) => {
-          if (searchParams.yearFrom) return book.year >= searchParams.yearFrom;
+          if (searchParams?.yearFrom) return book.year >= searchParams.yearFrom;
           else return true;
         })
         .filter((book) => {
-          if (searchParams.yearTo) return book.year < searchParams.yearTo;
+          if (searchParams?.yearTo) return book.year < searchParams.yearTo;
           else return true;
         })
 
-        .filter((book) =>
-          filtredGenres.some((name: string) => {
-            return book.genres.some((genre) => {
-              return genre.name.includes(name);
-            });
-          })
-        );
+        .filter( book =>{return book.genres.some( (genre:Genre) =>{return filtredGenres?.includes(genre.name)} ) })
     }
   }
 }

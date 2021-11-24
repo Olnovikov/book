@@ -21,11 +21,19 @@ export class SearchFormComponent implements OnInit {
       author: new FormControl(null),
       yearFrom: new FormControl(null,[Validators.pattern(/^[0-9]{4}$/)]),
       yearTo: new FormControl(null,Validators.pattern(/^[0-9]{4}$/)),
-      genres:new FormControl(null)
+      genres:new FormControl([]),
 
       })
   }
+
 reset(){
-  this.searchParams.emit(undefined)
+
+  this.searchParams.emit({
+    name:'',
+    author:'',
+    yearFrom:0,
+    yearTo:0,
+    genres:[],
+    })
 }
 }

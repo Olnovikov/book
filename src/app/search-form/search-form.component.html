@@ -34,8 +34,8 @@
   </div>
   <div class="form-control">
     <p>выберите жанры</p>
-    <ng-select class="select" formControlName="genres" [multiple]="true">
-      <ng-option *ngFor="let genre of genresList"[value]='genre'>{{ genre.name }}</ng-option>
+    <ng-select class="select" formControlName="genres"  [multiple]="true">
+      <ng-option  *ngFor="let genre of genresList"[value]='genre'>{{ genre.name }}</ng-option>
     </ng-select>
     </div>
 

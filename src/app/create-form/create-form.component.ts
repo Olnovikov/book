@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { genres } from '../data';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
@@ -21,7 +21,7 @@ genresList:Genre[]=genres
     author: new FormControl('',Validators.required),
     year: new FormControl('',[Validators.required,Validators.pattern(/^[0-9]{4}$/)]),
     description:new FormControl(''),
-    genres:new FormControl('',Validators.required)
+    genres:new FormControl([],Validators.required)
     })
   }
 submit(){
