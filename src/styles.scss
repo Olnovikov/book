@@ -1,14 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
-
+@import"./variables.css";
 *{padding: 0;
 margin: 0;}
 
 input {
   &.ng-invalid.ng-touched{border: 1px solid red;}
   &.ng-valid.ng-touched{border: 1px solid green;}
+  resize: vertical;
+  padding:10px;
+  margin: 5px;
+  border-radius:10px;
+  border: 0.1px solid gray;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:1px;
 }
 .select{
   width: 230px;
   padding:10px 0px;
+}
+.form{
+padding: 10px;
+text-align: center;
+}
+.form-control{
+  text-align: center;
+}
+.form_text{
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: 18px;
+  line-height: 32px;
+}
+.validation{
+  margin:7px;
+}
+.error_text{
+  color: red;
+  margin:7px;
+}
+.form_btn{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+  transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+  border-radius: 4px;
+  color: #555555;
+  display: block;
+  width: 110px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  margin-bottom: 10px;
+  padding: 4px 6px;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form_btn:hover, .form_btn:focus {
+  border-color: rgba(117, 163, 199, 0.6);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(117, 163, 199, 0.6);
+  outline: 0 none;
 }

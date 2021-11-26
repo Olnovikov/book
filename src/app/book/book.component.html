@@ -1,7 +1,9 @@
-<p>{{book.name}}</p>
-<p>{{book.author}}</p>
-<p>{{book.year}}</p>
-<p>{{book.description}}</p>
-<div *ngFor="let genre of book.genres">{{genre.name}}</div>
-<button>Редактировать книгу</button>
-<button (click)=" this.deletedBook.emit(this.book)">Удалить книгу</button>
+<div class="book">
+<p class="book_text">{{book.name}}</p>
+<p class="book_text">{{book.author}}</p>
+<p class="book_text">{{book.year}}</p>
+<p class="book_text">{{book.description}}</p>
+<p class="book_text" *ngFor="let genre of book.genres">{{genre.name}}</p>
+<button class="book_btn">Редактировать</button>
+<button class="book_btn"(click)=" this.deletedBook.emit(this.book)">Удалить</button>
+</div>
