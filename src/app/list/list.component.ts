@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BookOperationsService } from '../book-operations.service';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
 import { SearchParams } from '../interfaces/searchParams';
@@ -9,7 +10,7 @@ import { SearchParams } from '../interfaces/searchParams';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor() {}
+  constructor(public bookOperationsService:BookOperationsService) {}
 
   get getList() {
     return this.listParam ? this.searchBooksList : this.booksList
@@ -20,12 +21,14 @@ export class ListComponent implements OnInit {
   itemsPerPage: number = 3;
   page: number = 1;
 
-  ngOnInit(): void {}
-  getCreatedBook(createdBook: Book) {
+  ngOnInit(): void {
+
+  }
+  createBook(createdBook: Book) {
     this.booksList.push(createdBook);
   }
 
-  getDeleteBook(deletedBook: Book) {
+  deleteBook(deletedBook: Book) {
     this.booksList = this.booksList.filter(
       (book) =>
         book.name !== deletedBook.name || book.author !== deletedBook.author
@@ -76,12 +79,12 @@ export class ListComponent implements OnInit {
     searchParams: SearchParams,
     filtredGenres: string[]
   ) {
+
     if (searchParams.genres) {
-      if (searchParams.genres.length)
         return book.genres.some((genre: Genre) => {
           return filtredGenres.includes(genre.name);
         });
-      else return true;
     } else return true;
   }
+
 }

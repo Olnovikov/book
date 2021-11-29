@@ -16,6 +16,7 @@ export class SearchFormComponent implements OnInit {
   genreDisableParam: boolean;
   disableparam: boolean = true;
   @Output() searchParams: EventEmitter<SearchParams> = new EventEmitter();
+
   ngOnInit(): void {
     this.searchForm = new FormGroup({
       name: new FormControl(null),
@@ -26,9 +27,10 @@ export class SearchFormComponent implements OnInit {
     });
 
   }
+
   disableCheck() {
 
-    return !this.searchForm.value.name &&!this.searchForm.value.author &&!this.searchForm.value.yearTo &&!this.searchForm.value.yearFrom &&!this.searchForm.value.genres ? true : false;
+  return !this.searchForm.value.name &&!this.searchForm.value.author &&!this.searchForm.value.yearTo &&!this.searchForm.value.yearFrom &&!this.searchForm.value.genres ? true : false;
 
   }
   reset() {

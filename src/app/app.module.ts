@@ -8,6 +8,7 @@ import { ListComponent } from './list/list.component';
 import { CreateFormComponent } from './create-form/create-form.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SearchFormComponent } from './search-form/search-form.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
     BrowserModule,
     NgxPaginationModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     NgSelectModule
   ],
