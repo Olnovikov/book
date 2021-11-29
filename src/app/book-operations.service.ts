@@ -1,16 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Genre } from './interfaces/genre';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookOperationsService {
 
-  constructor() { }
-  // getGenres(res:any,allGenres:Genre[]){
-  //   res=res.map((res:any) => {
-  //     return res.$ngOptionLabel;
-  //   })
-  //   return allGenres.filter( item => res.some( (name:string) => item.name.includes(name) ) )
-
+  constructor(public http: HttpClient) { }
+  // getGenres(){
+  //   return this.http.get<any>('/data.ts').subscribe(res=>console.log(res))
   // }
 }
