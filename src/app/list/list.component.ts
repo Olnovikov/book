@@ -10,17 +10,15 @@ import { SearchParams } from '../interfaces/searchParams';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-
   constructor(public bookOperationsService:BookOperationsService) {}
 
-  bookslist$
+
   booksList: Book[] = [];
   searchBooksList: Book[] = [];
+  itemsPerPage: number = 3;
+  page: number = 1;
 
-
-  ngOnInit(): void {
-    this.bookOperationsService.getPage(1,this.booksList);
-  }
+  ngOnInit(): void {}
 
   createBook(createdBook: Book) {
     this.booksList.push(createdBook);

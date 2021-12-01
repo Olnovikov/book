@@ -5,15 +5,14 @@
 <div class="shelf">
 <!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>
 </app-book> -->
-<app-book (deletedBook)="deleteBook($event)"  *ngFor="let book of bookslist$| paginate: {id: 'server', itemsPerPage: bookOperationsService.itemsPerPage, currentPage: bookOperationsService.p , totalItems: bookOperationsService.total}" [book]='book'>
+<app-book (deletedBook)="deleteBook($event)"  *ngFor="let book of (bookOperationsService.bookslist$|async)" [book]='book'>
 </app-book>
 </div>
-<pagination-controls (pageChange)="bookOperationsService.getPage($event,booksList)" id="server"></pagination-controls>
-<!-- <pagination-controls (pageChange)="p = $event"
-(pageBoundsCorrection)="p = $event"
+<pagination-controls (pageChange)="page = $event"
+(pageBoundsCorrection)="page = $event"
 previousLabel=""
 nextLabel=""
 [autoHide]="true"
 id= 'server'
-></pagination-controls> -->
+></pagination-controls>
 

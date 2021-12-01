@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
-import { Genre } from './interfaces/genre';
+import { BehaviorSubject, Observable,  } from 'rxjs';
+import { Book } from './interfaces/book';
+
+
 
 
 @Injectable({
@@ -8,8 +11,14 @@ import { Genre } from './interfaces/genre';
 })
 export class BookOperationsService {
 
-  constructor(public http: HttpClient) { }
-  // getGenres(){
-  //   return this.http.get<any>('/data.ts').subscribe(res=>console.log(res))
-  // }
+constructor() { }
+
+private bookSubject:BehaviorSubject<Book[]>=new BehaviorSubject<Book[]>([])
+bookslist$:Observable<Book[]>=this.bookSubject.asObservable()
+
+createBooksList(booksList:Book[]){
+  return this.bookSubject.next(booksList)
+}
+
+
 }
