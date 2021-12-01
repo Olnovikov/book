@@ -10,22 +10,21 @@ import { SearchParams } from '../interfaces/searchParams';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
+
   constructor(public bookOperationsService:BookOperationsService) {}
 
-  get getList() {
-    return this.listParam ? this.searchBooksList : this.booksList
-  }
+  bookslist$
   booksList: Book[] = [];
   searchBooksList: Book[] = [];
-  listParam: SearchParams | undefined = undefined;
-  itemsPerPage: number = 3;
-  page: number = 1;
+
 
   ngOnInit(): void {
-
+    this.bookOperationsService.getPage(1,this.booksList);
   }
+
   createBook(createdBook: Book) {
     this.booksList.push(createdBook);
+    this.bookOperationsService.createBooksList(this.booksList)
   }
 
   deleteBook(deletedBook: Book) {
@@ -33,12 +32,12 @@ export class ListComponent implements OnInit {
       (book) =>
         book.name !== deletedBook.name || book.author !== deletedBook.author
     );
+    this.bookOperationsService.createBooksList(this.booksList)
   }
+
   search(searchParams?: SearchParams) {
-    if (!searchParams) {
-      this.listParam = undefined;
-    } else {
-      this.listParam = searchParams;
+    if (searchParams) {
+
       let filtredGenres = (searchParams?.genres || []).map((res: Genre) => {
         return res.name;
       });
@@ -52,7 +51,9 @@ export class ListComponent implements OnInit {
           this.filterGenres(book, searchParams, filtredGenres)
         );
       });
+      this.bookOperationsService.createBooksList(this.searchBooksList)
     }
+    else this.bookOperationsService.createBooksList(this.booksList)
   }
   filterName(book: Book, searchParams: SearchParams) {
     if (searchParams.name) return book.name.includes(searchParams.name);
