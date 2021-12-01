@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { BookOperationsService } from '../book-operations.service';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
@@ -13,45 +14,42 @@ export class ListComponent implements OnInit {
   constructor(public bookOperationsService:BookOperationsService) {}
 
 
-  booksList: Book[] = [];
+  // booksList: Book[] = [];
   searchBooksList: Book[] = [];
-  itemsPerPage: number = 3;
-  page: number = 1;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   createBook(createdBook: Book) {
-    this.booksList.push(createdBook);
-    this.bookOperationsService.createBooksList(this.booksList)
+
+    this.bookOperationsService.createBook(createdBook)
+
   }
 
   deleteBook(deletedBook: Book) {
-    this.booksList = this.booksList.filter(
-      (book) =>
-        book.name !== deletedBook.name || book.author !== deletedBook.author
-    );
-    this.bookOperationsService.createBooksList(this.booksList)
+    this.bookOperationsService.deleteBook(deletedBook)
   }
 
   search(searchParams?: SearchParams) {
-    if (searchParams) {
+    // if (searchParams) {
 
-      let filtredGenres = (searchParams?.genres || []).map((res: Genre) => {
-        return res.name;
-      });
+    //   let filtredGenres = (searchParams?.genres || []).map((res: Genre) => {
+    //     return res.name;
+    //   });
 
-      this.searchBooksList = this.booksList.filter((book) => {
-        return (
-          this.filterName(book, searchParams) &&
-          this.filterAuthor(book, searchParams) &&
-          this.filterYearFrom(book, searchParams) &&
-          this.filterYearTo(book, searchParams) &&
-          this.filterGenres(book, searchParams, filtredGenres)
-        );
-      });
-      this.bookOperationsService.createBooksList(this.searchBooksList)
-    }
-    else this.bookOperationsService.createBooksList(this.booksList)
+    //   this.searchBooksList = this.booksList.filter((book) => {
+    //     return (
+    //       this.filterName(book, searchParams) &&
+    //       this.filterAuthor(book, searchParams) &&
+    //       this.filterYearFrom(book, searchParams) &&
+    //       this.filterYearTo(book, searchParams) &&
+    //       this.filterGenres(book, searchParams, filtredGenres)
+    //     );
+    //   });
+      // this.bookOperationsService.createBooksList(this.searchBooksList)
+    //}
+    // else this.bookOperationsService.createBooksList(this.booksList)
   }
   filterName(book: Book, searchParams: SearchParams) {
     if (searchParams.name) return book.name.includes(searchParams.name);
@@ -87,3 +85,9 @@ export class ListComponent implements OnInit {
   }
 
 }
+
+
+
+
+
+

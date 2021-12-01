@@ -8,11 +8,10 @@
 <app-book (deletedBook)="deleteBook($event)"  *ngFor="let book of (bookOperationsService.bookslist$|async)" [book]='book'>
 </app-book>
 </div>
-<pagination-controls (pageChange)="page = $event"
+<!-- <pagination-controls (pageChange)="page = $event"
 (pageBoundsCorrection)="page = $event"
 previousLabel=""
 nextLabel=""
 [autoHide]="true"
-id= 'server'
-></pagination-controls>
+></pagination-controls> -->
 

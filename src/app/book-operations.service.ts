@@ -12,13 +12,27 @@ import { Book } from './interfaces/book';
 export class BookOperationsService {
 
 constructor() { }
-
-private bookSubject:BehaviorSubject<Book[]>=new BehaviorSubject<Book[]>([])
+booksList: Book[] = [];
+private bookSubject:BehaviorSubject<any>=new BehaviorSubject<Book[]>([])
 bookslist$:Observable<Book[]>=this.bookSubject.asObservable()
 
-createBooksList(booksList:Book[]){
-  return this.bookSubject.next(booksList)
+createBook(createdBook:Book){
+
+this.booksList=this.bookSubject.getValue()
+this.booksList.push(createdBook)
+this.getBooksList(this.booksList)
+
 }
+getBooksList(booksList: Book[]){
+  this.bookSubject.next(booksList)
+}
+deleteBook(deletedBook: Book) {
+  this.booksList=this.bookSubject.getValue().filter(
+    (book:Book) =>
+      book.name !== deletedBook.name || book.author !== deletedBook.author
+  );
+  this.getBooksList(this.booksList)
 
-
+}
+searchBook(){}
 }
