@@ -1,0 +1,38 @@
+.book {
+  width: 220px;
+  padding: 10px;
+  margin: 50px;
+  border: 1px solid black;
+  text-align: center;
+  background: #3a928e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  word-break: break-all;
+  height: 350px;
+  border-radius: 3%;
+
+  &_text {
+    color: var(--main-color);
+    font-family: var(--font-family);
+    font-size: 18px;
+    line-height: 32px;
+  }
+  &_btn {
+    background-color: #ffffff;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    border-radius: 4px;
+    color: #555555;
+    display: block;
+    width: 120px;
+    margin: 20px auto;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
