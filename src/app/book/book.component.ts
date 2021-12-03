@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BookOperationsService } from '../book-operations.service';
 import { Book } from '../interfaces/book';
 
 @Component({
@@ -8,11 +9,13 @@ import { Book } from '../interfaces/book';
 })
 export class BookComponent implements OnInit {
 
-  constructor() { }
+  constructor(public bookOperationsService:BookOperationsService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+ 
 @Input() book:Book
 @Output() deletedBook:EventEmitter<number> = new EventEmitter
+@Output() editedBook:EventEmitter<Book> = new EventEmitter
+
 
 }
