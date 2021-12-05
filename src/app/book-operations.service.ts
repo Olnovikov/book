@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { BehaviorSubject, Observable, } from 'rxjs';
 import { Book } from './interfaces/book';
 import { Genre } from './interfaces/genre';
@@ -13,11 +14,11 @@ import { SearchParams } from './interfaces/searchParams';
 })
 export class BookOperationsService {
 
-  constructor() { }
+  constructor(public route:ActivatedRoute) { }
   genres: Genre[] = [
     { id: 1, name: 'повесть' }, { id: 2, name: 'рассказ' }, { id: 3, name: 'новелла' }, { id: 4, name: 'поэма' }, { id: 5, name: 'роман' }, { id: 6, name: 'ода' }
   ]
-  editedBook:Book
+  editedBook?:Book
   booksList: Book[] = [
   {
     name: 'Герой нашего времени',
@@ -56,9 +57,16 @@ export class BookOperationsService {
     this.setBooksList(this.booksList)
 
   }
-editeBook(editedBook:Book){
-  this.editedBook=editedBook
-}
+  findBookForEdit(){
+     this.route.queryParams.subscribe((params: Params) => {
+       
+       this.editedBook= this.booksList.find(
+          (book) =>
+          book.id  == params.id
+        )
+      
+      });
+  }
   searchBook(searchParams?: SearchParams) {
     if (searchParams) {
 

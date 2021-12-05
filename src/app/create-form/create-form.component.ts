@@ -24,13 +24,11 @@ genresList:Genre[]=this.bookOperationsService.genres
     genres:new FormControl([],Validators.required)
     })
   }
-submit(){
-  let bookCreateObj=this.createForm.value
-  bookCreateObj.id=new Date().valueOf()
-  this.createdBook.emit(bookCreateObj)
-  this.createForm.reset()
-
-
+  submit(){
+    let bookCreateObj=this.createForm.value
+    bookCreateObj.id=new Date().valueOf()
+    this.createdBook.emit(bookCreateObj)
+    this.createForm.reset()
 
 }
 
