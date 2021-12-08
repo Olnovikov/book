@@ -15,8 +15,8 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.bookOperationsService.setBooksList(this.bookOperationsService.booksList)
   }
-  
- 
+
+
   createBook(createdBook: Book) {
     this.bookOperationsService.createBook(createdBook)
   }
@@ -27,6 +27,7 @@ export class ListComponent implements OnInit {
 
   search(searchParams?: SearchParams) {
     this.bookOperationsService.searchBook(searchParams)
+
   }
 
 }

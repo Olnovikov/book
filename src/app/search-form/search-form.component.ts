@@ -19,21 +19,22 @@ export class SearchFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      name: new FormControl(null),
-      author: new FormControl(null),
-      yearFrom: new FormControl(null, [Validators.pattern(/^[0-9]{4}$/)]),
-      yearTo: new FormControl(null, Validators.pattern(/^[0-9]{4}$/)),
-      genres: new FormControl(null),
+      name: new FormControl(this.bookOperationsService.getValueFilter()?this.bookOperationsService.getValueFilter().name:null),
+      author: new FormControl(this.bookOperationsService.getValueFilter()?this.bookOperationsService.getValueFilter().author:null),
+      yearFrom: new FormControl(this.bookOperationsService.getValueFilter()?this.bookOperationsService.getValueFilter().yearFrom:null, [Validators.pattern(/^[0-9]{4}$/)]),
+      yearTo: new FormControl(this.bookOperationsService.getValueFilter()?this.bookOperationsService.getValueFilter().yearTo:null, Validators.pattern(/^[0-9]{4}$/)),
+      genres: new FormControl(this.bookOperationsService.getValueFilter()?this.bookOperationsService.getValueFilter().genres:null),
     });
 
   }
 
   disableCheck() {
 
-  return !this.searchForm.value.name &&!this.searchForm.value.author &&!this.searchForm.value.yearTo &&!this.searchForm.value.yearFrom &&!this.searchForm.value.genres ? true : false;
+   return !this.searchForm.value.name &&!this.searchForm.value.author &&!this.searchForm.value.yearTo &&!this.searchForm.value.yearFrom &&!this.searchForm.value.genres ? true : false;
 
   }
   reset() {
     this.searchParams.emit(undefined);
+
   }
 }

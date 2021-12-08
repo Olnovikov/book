@@ -6,26 +6,26 @@ import { Book } from '../interfaces/book';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
+  constructor(
+    public bookOperationsService: BookOperationsService,
+    public router: Router
+  ) {}
 
-  constructor(public bookOperationsService: BookOperationsService, public router: Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void { }
-
-  @Input() book: Book
-  @Output() deletedBook: EventEmitter<number> = new EventEmitter
+  @Input() book: Book;
+  @Output() deletedBook: EventEmitter<number> = new EventEmitter();
 
   goToEditePage() {
     this.router.navigate(['/book', this.book.id], {
       queryParams: {
-        id: this.book.id
-      }
-
+        id: this.book.id,
+      },
     });
 
-    this.bookOperationsService.findBookForEdit()
+    this.bookOperationsService.findBookForEdit();
   }
-
 }
