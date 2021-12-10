@@ -18,7 +18,7 @@ export class EditFormComponent implements OnInit {
   ) { }
 
   editeForm: FormGroup;
-  genresList: Genre[] = this.genresServise.genres;
+  genresList: Genre[] = this.genresServise.getGenres();
 
   ngOnInit(): void {
     this.editeForm = new FormGroup({
@@ -46,10 +46,11 @@ export class EditFormComponent implements OnInit {
 
   submit() {
     if (this.bookOperationsService.editedBook) {
-      let editIndex = this.bookOperationsService.booksList.indexOf(this.bookOperationsService.editedBook);
+      let booksList = this.bookOperationsService.getActualBooksList()
+      let editIndex = booksList.indexOf(this.bookOperationsService.editedBook);
       let bookEditeObj = this.editeForm.value;
       bookEditeObj.id = this.bookOperationsService.editedBook.id;
-      this.bookOperationsService.booksList[editIndex] = bookEditeObj;
+      booksList[editIndex] = bookEditeObj;
 
     }
     this.router.navigate(['']);

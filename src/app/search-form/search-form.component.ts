@@ -12,7 +12,7 @@ import { GenresService } from '../stores/genres.store';
 export class SearchFormComponent implements OnInit {
   constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { }
   searchForm: FormGroup;
-  genresList: Genre[] = this.genresServise.genres;
+  genresList: Genre[] = this.genresServise.getGenres();
   genreDisableParam: boolean;
   disableparam: boolean = true;
 

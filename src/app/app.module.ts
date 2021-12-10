@@ -5,13 +5,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
 import { ListComponent } from './list/list.component';
-import { CreateFormComponent } from './create-form/create-form.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { AppRoutingModule } from './app-routing.module';
-import { defaultSimpleModalOptions, SimpleModalModule } from 'ngx-simple-modal';
+import { SimpleModalModule } from 'ngx-simple-modal';
 import { ModalComponent } from './modal/modal.component'
 
 
@@ -21,7 +20,7 @@ import { ModalComponent } from './modal/modal.component'
     AppComponent,
     BookComponent,
     ListComponent,
-    CreateFormComponent,
+
     SearchFormComponent,
     EditFormComponent,
     ModalComponent,

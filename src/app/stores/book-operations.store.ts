@@ -13,8 +13,13 @@ export class BookOperationsService {
   constructor(public route: ActivatedRoute) { }
 
   editedBook?: Book;
-  booksList: Book[] = [
-    {
+
+  private searchSubject: BehaviorSubject<SearchParams | undefined> = new BehaviorSubject<SearchParams | undefined>(
+    undefined
+  );
+  searchParams$: Observable<SearchParams | undefined> = this.searchSubject.asObservable();
+  private bookSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(
+    [{
       name: 'Герой нашего времени',
       author: 'Лермонтов',
       year: 1842,
@@ -27,14 +32,7 @@ export class BookOperationsService {
       year: 1925,
       genres: [{ id: 1, name: 'повесть' }],
       id: 2,
-    },
-  ];
-  private searchSubject: BehaviorSubject<SearchParams | undefined> = new BehaviorSubject<SearchParams | undefined>(
-    undefined
-  );
-  searchParams$: Observable<SearchParams | undefined> = this.searchSubject.asObservable();
-  private bookSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(
-    []
+    },]
   );
   booksList$: Observable<Book[]> = this.bookSubject.asObservable();
   searchBooksList$: Observable<Book[]> = combineLatest(
@@ -56,14 +54,14 @@ export class BookOperationsService {
             this.filterGenres(book, filterParams, filtredGenres)
           );
         });
-      } else return this.booksList;
+      } else return this.bookSubject.getValue();
     })
   );
 
   createBook(createdBook: Book) {
-    this.booksList = this.bookSubject.getValue();
-    this.booksList.push(createdBook);
-    this.setBooksList(this.booksList);
+    let booksList = this.bookSubject.getValue();
+    booksList.push(createdBook);
+    this.setBooksList(booksList);
   }
 
   setBooksList(booksList: Book[]) {
@@ -71,15 +69,16 @@ export class BookOperationsService {
   }
 
   deleteBook(deletedBookId: number) {
-    this.booksList = this.bookSubject
+    let booksList = this.bookSubject
       .getValue()
       .filter((book: Book) => book.id !== deletedBookId);
-    this.setBooksList(this.booksList);
+    this.setBooksList(booksList);
   }
 
   findBookForEdit() {
     this.route.queryParams.subscribe((params: Params) => {
-      this.editedBook = this.booksList.find((book) => book.id == params.id);
+      let booksList = this.bookSubject.getValue();
+      this.editedBook = booksList.find((book) => book.id == params.id);
     });
   }
 
@@ -92,6 +91,9 @@ export class BookOperationsService {
   getValueFilter() {
     return this.searchSubject.getValue() ? this.searchSubject.getValue() : null
 
+  }
+  getActualBooksList() {
+    return this.bookSubject.getValue()
   }
 
   filterName(book: Book, filterParams: SearchParams) {

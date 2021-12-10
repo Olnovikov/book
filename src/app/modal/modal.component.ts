@@ -19,7 +19,7 @@ export class ModalComponent extends SimpleModalComponent<any, boolean>  {
   message: string;
   constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { super() }
   createForm: FormGroup
-  genresList: Genre[] = this.genresServise.genres
+  genresList: Genre[] = this.genresServise.getGenres()
   @Output() createdBook: EventEmitter<Book> = new EventEmitter
 
   ngOnInit(): void {

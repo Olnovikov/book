@@ -14,12 +14,7 @@ export class ListComponent implements OnInit {
   constructor(public bookOperationsService: BookOperationsService, public router: Router, private simpleModalService: SimpleModalService) { }
 
   ngOnInit(): void {
-    this.bookOperationsService.setBooksList(this.bookOperationsService.booksList)
-  }
-
-
-  createBook(createdBook: Book) {
-    this.bookOperationsService.createBook(createdBook)
+    this.bookOperationsService.getActualBooksList()
   }
 
   showCreatedForm() {
