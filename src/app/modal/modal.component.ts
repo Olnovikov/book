@@ -37,6 +37,8 @@ export class ModalComponent extends SimpleModalComponent<any, boolean>  {
     bookCreateObj.id = new Date().valueOf()
     this.bookOperationsService.createBook(bookCreateObj)
     this.createForm.reset()
+    this.close()
+
 
 
   }

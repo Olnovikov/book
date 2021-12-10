@@ -23,21 +23,8 @@ export class ListComponent implements OnInit {
   }
 
   showCreatedForm() {
-    let disposable = this.simpleModalService.addModal(ModalComponent, {})
-      .subscribe((isConfirmed) => {
-        //We get modal result
-        if (isConfirmed) {
-          alert('accepted');
-        }
-        else {
-          alert('declined');
-        }
-      });
-    //We can close modal calling disposable.unsubscribe();
-    //If modal was not closed manually close it by timeout
-    // setTimeout(() => {
-    //   disposable.unsubscribe();
-    // }, 10000);
+    this.simpleModalService.addModal(ModalComponent, { message: 'Click outside to close dialog' }, { closeOnClickOutside: true })
+
   }
 
 }
