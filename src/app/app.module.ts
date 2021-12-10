@@ -6,9 +6,15 @@ import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
 import { ListComponent } from './list/list.component';
 import { CreateFormComponent } from './create-form/create-form.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchFormComponent } from './search-form/search-form.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { EditFormComponent } from './edit-form/edit-form.component';
+import { AppRoutingModule } from './app-routing.module';
+import { defaultSimpleModalOptions, SimpleModalModule } from 'ngx-simple-modal';
+import { ModalComponent } from './modal/modal.component'
+
+
 
 @NgModule({
   declarations: [
@@ -17,6 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
     ListComponent,
     CreateFormComponent,
     SearchFormComponent,
+    EditFormComponent,
+    ModalComponent,
+
 
   ],
   imports: [
@@ -25,7 +34,9 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    AppRoutingModule,
+    SimpleModalModule.forRoot({ container: document.body })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,17 @@
 <div class="forms">
-<app-create-form class="form" (createdBook)="createBook($event)"></app-create-form>
-<app-search-form class="form" (searchParams)="search($event)"></app-search-form>
+    <app-create-form class="form" (createdBook)="createBook($event)"></app-create-form>
+    <app-search-form class="form" (searchParams)="search($event)"></app-search-form>
 </div>
 <div class="shelf">
-<!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>
+    <!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>
 </app-book> -->
-<app-book (deletedBook)="deleteBook($event)"  *ngFor="let book of (bookOperationsService.bookslist$|async)" [book]='book'>
-</app-book>
+    <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of (bookOperationsService.searchBooksList$|async)"
+        [book]='book'>
+
+    </app-book>
+</div>
+<div>
+    <button type="button" class="form_btn" (click)="showCreatedForm()">Создать книгу</button>
 </div>
 <!-- <pagination-controls (pageChange)="page = $event"
 (pageBoundsCorrection)="page = $event"
@@ -14,4 +19,3 @@ previousLabel=""
 nextLabel=""
 [autoHide]="true"
 ></pagination-controls> -->
-

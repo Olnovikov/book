@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
-import { BookOperationsService } from '../book-operations.service';
+import { Router } from '@angular/router';
+import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
-import { Genre } from '../interfaces/genre';
 import { SearchParams } from '../interfaces/searchParams';
+import { SimpleModalService } from 'ngx-simple-modal';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-list',
@@ -11,77 +12,42 @@ import { SearchParams } from '../interfaces/searchParams';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor(public bookOperationsService:BookOperationsService) {}
-
-
-  // booksList: Book[] = [];
-  searchBooksList: Book[] = [];
+  constructor(public bookOperationsService: BookOperationsService, public router: Router, private simpleModalService: SimpleModalService) { }
 
   ngOnInit(): void {
-
+    this.bookOperationsService.setBooksList(this.bookOperationsService.booksList)
   }
+
 
   createBook(createdBook: Book) {
-
     this.bookOperationsService.createBook(createdBook)
-
   }
 
-  deleteBook(deletedBook: Book) {
-    this.bookOperationsService.deleteBook(deletedBook)
+  deleteBook(deletedBookId: number) {
+    this.bookOperationsService.deleteBook(deletedBookId)
   }
 
   search(searchParams?: SearchParams) {
-    // if (searchParams) {
+    this.bookOperationsService.searchBook(searchParams)
 
-    //   let filtredGenres = (searchParams?.genres || []).map((res: Genre) => {
-    //     return res.name;
-    //   });
-
-    //   this.searchBooksList = this.booksList.filter((book) => {
-    //     return (
-    //       this.filterName(book, searchParams) &&
-    //       this.filterAuthor(book, searchParams) &&
-    //       this.filterYearFrom(book, searchParams) &&
-    //       this.filterYearTo(book, searchParams) &&
-    //       this.filterGenres(book, searchParams, filtredGenres)
-    //     );
-    //   });
-      // this.bookOperationsService.createBooksList(this.searchBooksList)
-    //}
-    // else this.bookOperationsService.createBooksList(this.booksList)
-  }
-  filterName(book: Book, searchParams: SearchParams) {
-    if (searchParams.name) return book.name.includes(searchParams.name);
-    else return true;
   }
 
-  filterAuthor(book: Book, searchParams: SearchParams) {
-    if (searchParams.author) return book.author.includes(searchParams.author);
-    else return true;
-  }
-
-  filterYearFrom(book: Book, searchParams: SearchParams) {
-    if (searchParams.yearFrom) return book.year >= searchParams.yearFrom;
-    else return true;
-  }
-
-  filterYearTo(book: Book, searchParams: SearchParams) {
-    if (searchParams.yearTo) return book.year < searchParams.yearTo;
-    else return true;
-  }
-
-  filterGenres(
-    book: Book,
-    searchParams: SearchParams,
-    filtredGenres: string[]
-  ) {
-
-    if (searchParams.genres) {
-        return book.genres.some((genre: Genre) => {
-          return filtredGenres.includes(genre.name);
-        });
-    } else return true;
+  showCreatedForm() {
+    let disposable = this.simpleModalService.addModal(ModalComponent, {})
+      .subscribe((isConfirmed) => {
+        //We get modal result
+        if (isConfirmed) {
+          alert('accepted');
+        }
+        else {
+          alert('declined');
+        }
+      });
+    //We can close modal calling disposable.unsubscribe();
+    //If modal was not closed manually close it by timeout
+    // setTimeout(() => {
+    //   disposable.unsubscribe();
+    // }, 10000);
   }
 
 }

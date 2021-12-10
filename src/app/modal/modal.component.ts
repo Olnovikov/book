@@ -1,18 +1,23 @@
+
+import { SimpleModalComponent } from "ngx-simple-modal";
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
 import { GenresService } from '../stores/genres.store';
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-create-form',
-  templateUrl: './create-form.component.html',
-  styleUrls: ['./create-form.component.scss']
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.scss']
 })
-export class CreateFormComponent implements OnInit {
 
-  constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { }
+export class ModalComponent extends SimpleModalComponent<any, boolean>  {
+  title: string;
+  message: string;
+  constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { super() }
   createForm: FormGroup
   genresList: Genre[] = this.genresServise.genres
   @Output() createdBook: EventEmitter<Book> = new EventEmitter
@@ -30,9 +35,12 @@ export class CreateFormComponent implements OnInit {
   submit() {
     let bookCreateObj = this.createForm.value
     bookCreateObj.id = new Date().valueOf()
-    this.createdBook.emit(bookCreateObj)
+    this.bookOperationsService.createBook(bookCreateObj)
     this.createForm.reset()
 
+
   }
+
+
 
 }
