@@ -1,4 +1,5 @@
-<form action="" class="form" [formGroup]="searchForm" (ngSubmit)="this.searchParams.emit(this.searchForm.value)">
+<form action="" class="form" [formGroup]="searchForm"
+  (ngSubmit)="this.bookOperationsService.searchBook(this.searchForm.value)">
   <div class="form-control">
     <p class="form_text">введите название книги</p>
     <input type="text" formControlName="name" />

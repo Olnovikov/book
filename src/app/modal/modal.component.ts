@@ -6,7 +6,7 @@ import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
 import { GenresService } from '../stores/genres.store';
-import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-modal',

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
-import { SearchParams } from '../interfaces/searchParams';
 import { SimpleModalService } from 'ngx-simple-modal';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -21,15 +20,6 @@ export class ListComponent implements OnInit {
 
   createBook(createdBook: Book) {
     this.bookOperationsService.createBook(createdBook)
-  }
-
-  deleteBook(deletedBookId: number) {
-    this.bookOperationsService.deleteBook(deletedBookId)
-  }
-
-  search(searchParams?: SearchParams) {
-    this.bookOperationsService.searchBook(searchParams)
-
   }
 
   showCreatedForm() {

@@ -3,3 +3,19 @@
     font-family:var(--font-family);
   }
   .select{margin: 0 auto;}
+  .form{
+   
+    width: 260px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 1px solid black;
+  text-align: center;
+  background: #3a928e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  word-break: break-all;
+  height: 450px;
+  border-radius: 3%;
+}

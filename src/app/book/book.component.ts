@@ -17,7 +17,6 @@ export class BookComponent implements OnInit {
   ngOnInit(): void { }
 
   @Input() book: Book;
-  @Output() deletedBook: EventEmitter<number> = new EventEmitter();
 
   goToEditePage() {
     this.router.navigate(['/book', this.book.id], {

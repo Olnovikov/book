@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Genre } from '../interfaces/genre';
-import { SearchParams } from '../interfaces/searchParams';
 import { GenresService } from '../stores/genres.store';
 
 @Component({
@@ -16,7 +15,6 @@ export class SearchFormComponent implements OnInit {
   genresList: Genre[] = this.genresServise.genres;
   genreDisableParam: boolean;
   disableparam: boolean = true;
-  @Output() searchParams: EventEmitter<SearchParams> = new EventEmitter();
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -34,7 +32,6 @@ export class SearchFormComponent implements OnInit {
   }
 
   reset() {
-    this.searchParams.emit(undefined);
-
+    this.bookOperationsService.searchBook(undefined)
   }
 }
