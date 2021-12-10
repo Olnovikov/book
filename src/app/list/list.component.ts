@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookOperationsService } from '../stores/book-operations.store';
-import { Book } from '../interfaces/book';
 import { SimpleModalService } from 'ngx-simple-modal';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -18,7 +17,7 @@ export class ListComponent implements OnInit {
   }
 
   showCreatedForm() {
-    this.simpleModalService.addModal(ModalComponent, { message: 'Click outside to close dialog' }, { closeOnClickOutside: true })
+    this.simpleModalService.addModal(ModalComponent, {}, { closeOnClickOutside: true })
 
   }
 

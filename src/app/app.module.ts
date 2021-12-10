@@ -20,7 +20,6 @@ import { ModalComponent } from './modal/modal.component'
     AppComponent,
     BookComponent,
     ListComponent,
-
     SearchFormComponent,
     EditFormComponent,
     ModalComponent,

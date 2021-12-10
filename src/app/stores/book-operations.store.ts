@@ -75,11 +75,11 @@ export class BookOperationsService {
     this.setBooksList(booksList);
   }
 
-  findBookForEdit() {
-    this.route.queryParams.subscribe((params: Params) => {
-      let booksList = this.bookSubject.getValue();
-      this.editedBook = booksList.find((book) => book.id == params.id);
-    });
+  findBookForEdit(findId: number) {
+
+    let booksList = this.bookSubject.getValue();
+    this.editedBook = booksList.find((book) => book.id == findId);
+
   }
 
   searchBook(searchParams?: SearchParams) {

@@ -1,51 +1,29 @@
-<form
-  action=""
-  class="edite_form"
-  [formGroup]="editeForm"
-  (ngSubmit)="submit()"
->
+<form action="" class="edite_form" [formGroup]="editeForm" (ngSubmit)="submit()">
   <div class="form_control">
     <p class="form_text">введите название книги</p>
     <input type="text" formControlName="name" />
-    <div
-      class="validation"
-      *ngIf="editeForm.get('name')?.invalid && editeForm.get('name')?.touched"
-    >
+    <div class="validation" *ngIf="editeForm.get('name')?.invalid && editeForm.get('name')?.touched">
       <small class="error_text" *ngIf="editeForm.get('name')?.errors?.required">
-        Поле не может быть пустым</small
-      >
+        Поле не может быть пустым</small>
     </div>
   </div>
   <div class="form_control">
     <p class="form_text">введите автора</p>
     <input type="text" formControlName="author" />
-    <div
-      class="validation"
-      *ngIf="
-        editeForm.get('author')?.invalid && editeForm.get('author')?.touched
-      "
-    >
-      <small
-        class="error_text"
-        *ngIf="editeForm.get('author')?.errors?.required"
-      >
-        Поле не может быть пустым</small
-      >
+    <div class="validation" *ngIf="
+        editeForm.get('author')?.invalid && editeForm.get('author')?.touched">
+      <small class="error_text" *ngIf="editeForm.get('author')?.errors?.required">
+        Поле не может быть пустым</small>
     </div>
   </div>
   <div class="form_control">
     <p class="form_text">введите год написания книги</p>
     <input type="number" formControlName="year" />
-    <div
-      class="validation"
-      *ngIf="editeForm.get('year')?.invalid && editeForm.get('year')?.touched"
-    >
+    <div class="validation" *ngIf="editeForm.get('year')?.invalid && editeForm.get('year')?.touched">
       <small class="error_text" *ngIf="editeForm.get('year')?.errors?.required">
-        Поле не может быть пустым</small
-      >
+        Поле не может быть пустым</small>
       <small class="error_text" *ngIf="editeForm.get('year')?.errors?.pattern">
-        Год должен быть в формате "уууу"</small
-      >
+        Год должен быть в формате "уууу"</small>
     </div>
   </div>
   <div class="form_control">
@@ -54,28 +32,15 @@
   </div>
   <div class="form_control">
     <p class="form_text">выберите жанры</p>
-    <ng-select
-      class="select"
-      bindLabel="name"
-      formControlName="genres"
-      [multiple]="true"
-    >
+    <ng-select class="select" bindLabel="name" formControlName="genres" [multiple]="true">
       <ng-option *ngFor="let genre of genresList" [value]='genre'>{{
         genre.name
-      }}</ng-option>
+        }}</ng-option>
     </ng-select>
-    <div
-      class="validation"
-      *ngIf="
-        editeForm.get('genres')?.invalid && editeForm.get('genres')?.touched
-      "
-    >
-      <small
-        class="error_text"
-        *ngIf="editeForm.get('genres')?.errors?.required"
-      >
-        Поле не может быть пустым</small
-      >
+    <div class="validation" *ngIf="
+        editeForm.get('genres')?.invalid && editeForm.get('genres')?.touched">
+      <small class="error_text" *ngIf="editeForm.get('genres')?.errors?.required">
+        Поле не может быть пустым</small>
     </div>
   </div>
 

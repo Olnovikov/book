@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
@@ -25,6 +25,6 @@ export class BookComponent implements OnInit {
       },
     });
 
-    this.bookOperationsService.findBookForEdit();
+    this.bookOperationsService.findBookForEdit(this.book.id);
   }
 }

@@ -1,16 +1,3 @@
-<!-- <div class="modal-content">
-    <div class="modal-header">
-        <h4>{{title || 'Confirm'}}</h4>
-    </div>
-    <div class="modal-body">
-        <p>{{message || 'Are you sure?'}}</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" (click)="close()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="confirm()">OK</button>
-    </div>
-</div>
- -->
 <form action="" class="form" [formGroup]="createForm" (ngSubmit)="submit()">
     <div class="form_control">
         <p class="form_text">введите название книги</p>
@@ -24,8 +11,7 @@
         <p class="form_text">введите автора</p>
         <input type="text" formControlName="author" />
         <div class="validation" *ngIf="
-          createForm.get('author')?.invalid && createForm.get('author')?.touched
-        ">
+          createForm.get('author')?.invalid && createForm.get('author')?.touched">
             <small class="error_text" *ngIf="createForm.get('author')?.errors?.required">
                 Поле не может быть пустым</small>
         </div>
@@ -52,8 +38,7 @@
                 }}</ng-option>
         </ng-select>
         <div class="validation" *ngIf="
-          createForm.get('genres')?.invalid && createForm.get('genres')?.touched
-        ">
+          createForm.get('genres')?.invalid && createForm.get('genres')?.touched">
             <small class="error_text" *ngIf="createForm.get('genres')?.errors?.required">
                 Поле не может быть пустым</small>
         </div>

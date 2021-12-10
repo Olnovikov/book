@@ -14,7 +14,7 @@ import { GenresService } from '../stores/genres.store';
   styleUrls: ['./modal.component.scss']
 })
 
-export class ModalComponent extends SimpleModalComponent<any, boolean>  {
+export class ModalComponent extends SimpleModalComponent<any, boolean> implements OnInit {
   title: string;
   message: string;
   constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { super() }
@@ -38,8 +38,6 @@ export class ModalComponent extends SimpleModalComponent<any, boolean>  {
     this.bookOperationsService.createBook(bookCreateObj)
     this.createForm.reset()
     this.close()
-
-
 
   }
 

@@ -17,6 +17,7 @@ export class SearchFormComponent implements OnInit {
   disableparam: boolean = true;
 
   ngOnInit(): void {
+
     this.searchForm = new FormGroup({
       name: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.name : null),
       author: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.author : null),
@@ -25,10 +26,11 @@ export class SearchFormComponent implements OnInit {
       genres: new FormControl(this.bookOperationsService.getValueFilter() !== null ? this.bookOperationsService.getValueFilter()?.genres : []),
     });
 
+
   }
 
   disableCheck() {
-    return !this.searchForm.value.name && !this.searchForm.value.author && !this.searchForm.value.yearTo && !this.searchForm.value.yearFrom && !this.searchForm.value.genres ? true : false;
+    return !this.searchForm.value.name && !this.searchForm.value.author && !this.searchForm.value.yearTo && !this.searchForm.value.yearFrom && !this.searchForm.value.genres
   }
 
   reset() {
