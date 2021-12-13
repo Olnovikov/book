@@ -13,7 +13,7 @@
   <div class="form-control">
     <p class="form_text">год книги "от"</p>
     <input type="number" formControlName="yearFrom" />
-    <div class="validation" *ngIf="searchForm.get('yearFrom')?.invalid && searchForm.get('yearFrom')?.touched">
+    <div class="validation" *ngIf="searchForm.get('yearFrom')?.invalid ">
       <small class="error_text" *ngIf="searchForm.get('yearFrom')?.errors?.pattern">
         Год должен быть в формате "уууу"</small>
     </div>
@@ -22,7 +22,7 @@
   <div class="form-control">
     <p class="form_text">год книги "до"</p>
     <input type="number" formControlName="yearTo" />
-    <div class="validation" *ngIf="searchForm.get('yearTo')?.invalid && searchForm.get('yearTo')?.touched">
+    <div class="validation" *ngIf="searchForm.get('yearTo')?.invalid ">
       <small class="error_text" *ngIf="searchForm.get('yearTo')?.errors?.pattern">
         Год должен быть в формате "уууу"</small>
     </div>

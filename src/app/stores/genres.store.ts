@@ -20,5 +20,16 @@ export class GenresService {
   getGenres() {
     return this.genresSubject.getValue()
   }
+  selectedEditGenres:number[]
+
+  getIdsByGenres(genres:Genre[]){
+  this.selectedEditGenres=genres.map(genre=>genre.id)
+  }
+
+  getGenresById(filtredIds:number[]){
+
+    let genres=this.genresSubject.getValue()
+    return genres.filter( genre => filtredIds.includes( genre.id) )
+  }
   constructor() { }
 }

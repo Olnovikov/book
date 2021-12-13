@@ -13,11 +13,12 @@ export class ListComponent implements OnInit {
   constructor(public bookOperationsService: BookOperationsService, public router: Router, private simpleModalService: SimpleModalService) { }
 
   ngOnInit(): void {
-    this.bookOperationsService.getActualBooksList()
+
   }
 
   showCreatedForm() {
-    this.simpleModalService.addModal(ModalComponent, {}, { closeOnClickOutside: true })
+    this.simpleModalService.addModal(ModalComponent, { closeOnClickOutside: true },
+    )
 
   }
 

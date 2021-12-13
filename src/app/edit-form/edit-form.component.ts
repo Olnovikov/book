@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Genre } from '../interfaces/genre';
 import { GenresService } from '../stores/genres.store';
-import { Book } from '../interfaces/book';
 
 @Component({
   selector: 'app-edit-form',
@@ -43,6 +42,7 @@ export class EditFormComponent implements OnInit {
         Validators.required
       ),
     });
+
   }
 
   submit() {
@@ -50,6 +50,7 @@ export class EditFormComponent implements OnInit {
       let booksList = this.bookOperationsService.getActualBooksList()
       let editIndex = booksList.indexOf(this.bookOperationsService.editedBook);
       let bookEditeObj = this.editeForm.value;
+      bookEditeObj.genres=this.genresServise.getGenresById(bookEditeObj.genres)
       bookEditeObj.id = this.bookOperationsService.editedBook.id;
       booksList[editIndex] = bookEditeObj;
 

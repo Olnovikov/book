@@ -23,7 +23,7 @@ export class SearchFormComponent implements OnInit {
       author: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.author : null),
       yearFrom: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.yearFrom : null, [Validators.pattern(/^[0-9]{4}$/)]),
       yearTo: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.yearTo : null, Validators.pattern(/^[0-9]{4}$/)),
-      genres: new FormControl(this.bookOperationsService.getValueFilter() !== null ? this.bookOperationsService.getValueFilter()?.genres : []),
+      genres: new FormControl(this.bookOperationsService.getValueFilter() !== null ? this.bookOperationsService.getValueFilter()?.genres : null),
     });
 
 

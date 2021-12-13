@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../interfaces/book';
@@ -62,6 +62,7 @@ export class BookOperationsService {
     let booksList = this.bookSubject.getValue();
     booksList.push(createdBook);
     this.setBooksList(booksList);
+
   }
 
   setBooksList(booksList: Book[]) {
@@ -92,6 +93,9 @@ export class BookOperationsService {
     return this.searchSubject.getValue() ? this.searchSubject.getValue() : null
 
   }
+
+
+
   getActualBooksList() {
     return this.bookSubject.getValue()
   }

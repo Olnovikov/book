@@ -15,8 +15,7 @@ import { GenresService } from '../stores/genres.store';
 })
 
 export class ModalComponent extends SimpleModalComponent<any, boolean> implements OnInit {
-  title: string;
-  message: string;
+
   constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { super() }
   createForm: FormGroup
   genresList: Genre[] = this.genresServise.getGenres()
