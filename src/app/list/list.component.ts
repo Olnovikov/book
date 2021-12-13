@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   }
 
   showCreatedForm() {
-    this.simpleModalService.addModal(ModalComponent, { closeOnClickOutside: true },
+    this.simpleModalService.addModal(ModalComponent, {}, { closeOnClickOutside: true },
     )
 
   }
