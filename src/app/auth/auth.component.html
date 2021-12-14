@@ -1,0 +1,31 @@
+<form action="" class="form login_form" [formGroup]="loginForm" (ngSubmit)="submit()">
+  <div class="form_control">
+    <p class="form_text">введите логин</p>
+    <input class="auth_input" type="text" formControlName="login" />
+    <div
+      class="validation"
+      *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched">
+      <small
+        class="error_text"
+        *ngIf="loginForm.get('login')?.errors?.required" >
+        Поле не может быть пустым</small>
+    </div>
+  </div>
+  <div class="form_control">
+    <p class="form_text">введите пароль</p>
+    <input class="auth_input"  type="text" formControlName="password" />
+    <div
+      class="validation"
+      *ngIf="
+        loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      <small
+        class="error_text"
+        *ngIf="loginForm.get('password')?.errors?.required">
+        Поле не может быть пустым</small>
+    </div>
+  </div>
+
+  <button class="form_btn" type="submit" [disabled]="loginForm.invalid">
+    Войти
+  </button>
+</form>

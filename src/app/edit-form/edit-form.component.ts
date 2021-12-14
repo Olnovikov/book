@@ -55,6 +55,6 @@ export class EditFormComponent implements OnInit {
       booksList[editIndex] = bookEditeObj;
 
     }
-    this.router.navigate(['']);
+    this.router.navigate(['list']);
   }
 }
