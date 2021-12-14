@@ -11,8 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SimpleModalModule } from 'ngx-simple-modal';
-import { ModalComponent } from './modal/modal.component';
-import { AuthComponent } from './auth/auth.component'
+import { ModalComponent } from './modal/modal.component'
 
 
 
@@ -24,7 +23,6 @@ import { AuthComponent } from './auth/auth.component'
     SearchFormComponent,
     EditFormComponent,
     ModalComponent,
-    AuthComponent,
 
 
   ],
