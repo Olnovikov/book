@@ -32,8 +32,9 @@
   </div>
   <div class="form_control">
     <p class="form_text">выберите жанры</p>
-    <ng-select class="select" bindLabel="name" formControlName="genres" [multiple]="true" [(ngModel)]="genresServise.selectedEditGenres">
-      <ng-option *ngFor="let genre of genresList" [value]='genre.id' >{{
+    <ng-select class="select" bindLabel="name" formControlName="genres" [multiple]="true"
+      [(ngModel)]="genresServise.selectedEditGenres">
+      <ng-option *ngFor="let genre of genresList" [value]='genre.id'>{{
         genre.name
         }}</ng-option>
     </ng-select>
@@ -49,3 +50,4 @@
     Редактировать книгу
   </button>
 </form>
+<app-login-header></app-login-header>

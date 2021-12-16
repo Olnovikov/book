@@ -1,16 +1,20 @@
 <div class="forms">
-
-    <app-search-form class="form"></app-search-form>
+  <app-search-form class="form"></app-search-form>
+  <div>
+    <app-login-header></app-login-header>
+    <button *ngIf="UserService.getUserValue()" class="out_button" (click)="AuthService.logout()">Выйти</button>
+  </div>
 </div>
 <div class="shelf">
-    <!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>
+  <!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>
 </app-book> -->
-    <app-book *ngFor="let book of (bookOperationsService.searchBooksList$|async)" [book]='book'>
-
-    </app-book>
+  <app-book *ngFor="let book of bookOperationsService.searchBooksList$ | async" [book]="book">
+  </app-book>
 </div>
 <div>
-    <button type="button" class="form_btn" (click)="showCreatedForm()">Создать книгу</button>
+  <button type="button" class="form_btn" (click)="showCreatedForm()">
+    Создать книгу
+  </button>
 </div>
 <!-- <pagination-controls (pageChange)="page = $event"
 (pageBoundsCorrection)="page = $event"

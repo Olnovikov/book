@@ -9,19 +9,19 @@ import { AuthService } from '../stores/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public AuthService:AuthService) { }
-  loginForm:FormGroup
+  constructor(public AuthService: AuthService) { }
+  loginForm: FormGroup
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    password: new FormControl('',Validators.required),
+      login: new FormControl('test', Validators.required),
+      password: new FormControl('qwerty', Validators.required),
     })
   }
 
   submit() {
 
-    this.AuthService.login(this.loginForm.value.login,this.loginForm.value.password)
+    this.AuthService.login(this.loginForm.value.login, this.loginForm.value.password)
   }
 
 }

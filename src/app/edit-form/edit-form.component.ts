@@ -50,7 +50,7 @@ export class EditFormComponent implements OnInit {
       let booksList = this.bookOperationsService.getActualBooksList()
       let editIndex = booksList.indexOf(this.bookOperationsService.editedBook);
       let bookEditeObj = this.editeForm.value;
-      bookEditeObj.genres=this.genresServise.getGenresById(bookEditeObj.genres)
+      bookEditeObj.genres = this.genresServise.getGenresById(bookEditeObj.genres)
       bookEditeObj.id = this.bookOperationsService.editedBook.id;
       booksList[editIndex] = bookEditeObj;
 
