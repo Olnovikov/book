@@ -9,7 +9,7 @@ import { UserService } from '../stores/user.store';
 })
 export class LoginHeaderComponent implements OnInit {
 
-  constructor(public UserService: UserService, public AuthService: AuthService) { }
+  constructor(public UserStore: UserService, public AuthService: AuthService) { }
 
   ngOnInit(): void {
   }

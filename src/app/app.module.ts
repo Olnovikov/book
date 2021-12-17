@@ -16,6 +16,7 @@ import { AuthComponent } from './auth/auth.component'
 import { JwtInterceptorService } from './servises/jwt-interceptor.service';
 import { LoginHeaderComponent } from './login-header/login-header.component';
 import { LayoutComponent } from './layout/layout.component';
+import { NoAuthInfoComponent } from './no-auth-info/no-auth-info.component';
 
 
 
@@ -32,7 +33,8 @@ import { LayoutComponent } from './layout/layout.component';
     ModalComponent,
     AuthComponent,
     LoginHeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    NoAuthInfoComponent
 
 
   ],

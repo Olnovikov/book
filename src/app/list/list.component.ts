@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { SimpleModalService } from 'ngx-simple-modal';
 import { ModalComponent } from '../modal/modal.component';
-import { UserService } from '../stores/user.store';
-import { AuthService } from '../servises/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -12,12 +10,9 @@ import { AuthService } from '../servises/auth.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor(public bookOperationsService: BookOperationsService, public router: Router, private simpleModalService: SimpleModalService, public UserService: UserService, public AuthService: AuthService) { }
+  constructor(public bookOperationsService: BookOperationsService, public router: Router, private simpleModalService: SimpleModalService) { }
 
   ngOnInit(): void {
-
-    // this.AuthService.checkToken()
-    // this.UserService.getProfile()
 
   }
 

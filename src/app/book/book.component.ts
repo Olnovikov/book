@@ -22,7 +22,6 @@ export class BookComponent implements OnInit {
 
   goToEditePage() {
     this.router.navigate(['/book', this.book.id], {});
-
     this.bookOperationsService.findBookForEdit(this.book.id);
     this.genresServise.getIdsByGenres(this.book.genres)
   }

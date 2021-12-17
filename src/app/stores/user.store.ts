@@ -17,13 +17,7 @@ export class UserService {
   constructor(public http: HttpClient, public router: Router, public ApiService: ApiService) { }
   getProfile() {
     this.ApiService.getProfileApi().subscribe((res) => {
-      if (res) {
-        this.setUser(res)
-        this.router.navigate(['list']);
-      } else {
-        localStorage.removeItem('access_token')
-        alert('Неверный логин или пароль');
-      }
+      this.setUser(res)
     });
   }
   setUser(user: User | null) {

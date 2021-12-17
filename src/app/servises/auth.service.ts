@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 import { UserService } from '../stores/user.store';
 import { ApiService } from './api.service';
 
@@ -7,10 +8,10 @@ import { ApiService } from './api.service';
   providedIn: 'root',
 })
 export class AuthService {
-  token: any = localStorage.getItem('access_token');
+  token: string | null = localStorage.getItem('access_token');
   constructor(
     public router: Router,
-    public UserService: UserService,
+    public UserStore: UserService,
     public ApiService: ApiService
   ) { }
   login(login: string, password: string) {
@@ -18,14 +19,18 @@ export class AuthService {
       .subscribe((res: any) => {
         this.token = res.access_token;
         localStorage.setItem('access_token', res.access_token);
-        this.UserService.getProfile();
-      });
+        this.router.navigate(['list'])
+      },
+
+      );
+
   }
   logout() {
-    this.UserService.setUser(null)
+    this.UserStore.setUser(null)
     this.token = null
     localStorage.removeItem('access_token')
     this.router.navigate(['auth'])
   }
+
 
 }

@@ -10,11 +10,11 @@ import { UserService } from '../stores/user.store';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor(public router: Router, public AuthService: AuthService, public UserService: UserService) { }
+  constructor(public router: Router, public AuthService: AuthService, public UserStore: UserService) { }
 
   ngOnInit(): void {
-
-    this.UserService.getProfile()
+    this.router.navigate(['list']);
+    this.UserStore.getProfile()
   }
 
 }
