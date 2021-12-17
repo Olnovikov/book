@@ -13,8 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SimpleModalModule } from 'ngx-simple-modal';
 import { ModalComponent } from './modal/modal.component';
 import { AuthComponent } from './auth/auth.component'
-import { JwtInterceptorService } from './stores/jwt-interceptor.service';
+import { JwtInterceptorService } from './servises/jwt-interceptor.service';
 import { LoginHeaderComponent } from './login-header/login-header.component';
+import { LayoutComponent } from './layout/layout.component';
 
 
 
@@ -30,7 +31,8 @@ import { LoginHeaderComponent } from './login-header/login-header.component';
     EditFormComponent,
     ModalComponent,
     AuthComponent,
-    LoginHeaderComponent
+    LoginHeaderComponent,
+    LayoutComponent
 
 
   ],

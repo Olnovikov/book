@@ -1,9 +1,6 @@
 <div class="forms">
   <app-search-form class="form"></app-search-form>
-  <div>
-    <app-login-header></app-login-header>
-    <button *ngIf="UserService.getUserValue()" class="out_button" (click)="AuthService.logout()">Выйти</button>
-  </div>
+
 </div>
 <div class="shelf">
   <!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>

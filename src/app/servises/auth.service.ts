@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './user.service';
+import { UserService } from '../stores/user.store';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,12 @@ import { UserService } from './user.service';
 export class AuthService {
   token: any = localStorage.getItem('access_token');
   constructor(
-    public http: HttpClient,
     public router: Router,
-    public UserService: UserService
+    public UserService: UserService,
+    public ApiService: ApiService
   ) { }
   login(login: string, password: string) {
-    this.http
-      .post('/api/auth/login', { login: login, password: password })
+    this.ApiService.getTokenApi(login, password)
       .subscribe((res: any) => {
         this.token = res.access_token;
         localStorage.setItem('access_token', res.access_token);
@@ -26,12 +25,7 @@ export class AuthService {
     this.UserService.setUser(null)
     this.token = null
     localStorage.removeItem('access_token')
-    this.router.navigate([''])
+    this.router.navigate(['auth'])
   }
-  checkToken() {
-    if (!this.token) {
-      this.router.navigate([''])
-      alert('Авторизуйтесь для доступа к функционалу приложения')
-    }
-  }
+
 }
