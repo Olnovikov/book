@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../servises/api.service';
-import { AuthService } from '../../servises/auth.service';
 import { UserService } from '../../stores/user.store';
 
 @Component({
@@ -12,13 +11,12 @@ import { UserService } from '../../stores/user.store';
 export class LayoutComponent implements OnInit {
   constructor(
     public router: Router,
-    public AuthService: AuthService,
     public UserStore: UserService,
     public ApiService: ApiService
   ) {}
 
   ngOnInit(): void {
-    if (this.AuthService.token) {
+    if (this.UserStore.token) {
       this.router.navigate(['list']);
       this.ApiService.getProfileApi();
     }else{

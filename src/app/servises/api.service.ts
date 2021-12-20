@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { User } from '../interfaces/user';
 import { UserService } from '../stores/user.store';
-import { AuthService } from './auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -14,7 +13,6 @@ export class ApiService {
   constructor(
     public http: HttpClient,
     public UserStore: UserService,
-    public AuthService: AuthService,
     private toastr: ToastrService,
     public router: Router
   ) {}
@@ -30,7 +28,7 @@ export class ApiService {
         })
       )
       .subscribe((res: any) => {
-        this.AuthService.token = res.access_token;
+        this.UserStore.token = res.access_token;
         localStorage.setItem('access_token', res.access_token);
         this.router.navigate(['list']);
       });
