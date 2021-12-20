@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
-import { ApiService } from '../servises/api.service';
+
 
 
 @Injectable({
@@ -14,9 +13,9 @@ export class UserService {
     null
   );
   user$: Observable<User | null> = this.userSubject.asObservable();
-  constructor(public http: HttpClient, public router: Router, public ApiService: ApiService) { }
-  getProfile() {
-    this.ApiService.getProfileApi().subscribe((res) => {
+  constructor( public router: Router) { }
+  getProfile(profile:Observable<User>) {
+    profile.subscribe((res) => {
       this.setUser(res)
     });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../servises/api.service';
 import { AuthService } from '../servises/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../servises/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public AuthService: AuthService) { }
+  constructor(public AuthService: AuthService,public ApiServise:ApiService) { }
   loginForm: FormGroup
 
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class AuthComponent implements OnInit {
 
   submit() {
 
-    this.AuthService.login(this.loginForm.value.login, this.loginForm.value.password)
+    this.ApiServise.getTokenApi(this.loginForm.value.login, this.loginForm.value.password)
   }
 
 }
