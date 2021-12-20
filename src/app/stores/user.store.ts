@@ -18,10 +18,11 @@ export class UserService {
   setUser(user: User | null) {
     this.userSubject.next(user)
   }
-  getUserValue() {
 
+  getUserValue() {
     return this.userSubject.getValue()
   }
+
   getUsername() {
     return this.userSubject.getValue()?.username
   }

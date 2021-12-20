@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SimpleModalModule } from 'ngx-simple-modal';
 import { ModalComponent } from './components/modal/modal.component';
 import { AuthComponent } from './components/auth/auth.component'
-import { JwtInterceptorService } from './servises/jwt-interceptor.service';
+import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
 import { LoginHeaderComponent } from './components/login-header/login-header.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NoAuthInfoComponent } from './components/no-auth-info/no-auth-info.component';

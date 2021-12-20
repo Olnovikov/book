@@ -32,7 +32,16 @@ export class ApiService {
       });
   }
   getProfileApi() {
-    this.http.get<User>('/api/auth/profile').subscribe((res) => {
+    this.http.get<User>('/api/auth/profile').pipe(
+      catchError((err) => {
+        if (err.status == 401) {
+          this.router.navigate(['auth'])
+          this.toastr.warning('ваша сессия истекла,пожалуйста,авторизуйтесь повторно');
+        }
+        return [];
+      })
+    ).subscribe((res) => {
+
       this.UserStore.setUser(res);
     });
   }
