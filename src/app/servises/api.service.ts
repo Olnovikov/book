@@ -14,7 +14,6 @@ export class ApiService {
     public http: HttpClient,
     public UserStore: UserService,
     private toastr: ToastrService,
-    public router: Router
   ) {}
   getTokenApi(login: string, password: string) {
     return this.http
@@ -32,15 +31,7 @@ export class ApiService {
       });
   }
   getProfileApi() {
-    this.http.get<User>('/api/auth/profile').pipe(
-      catchError((err) => {
-        if (err.status == 401) {
-          this.router.navigate(['auth'])
-          this.toastr.warning('ваша сессия истекла,пожалуйста,авторизуйтесь повторно');
-        }
-        return [];
-      })
-    ).subscribe((res) => {
+    this.http.get<User>('/api/auth/profile').subscribe((res) => {
 
       this.UserStore.setUser(res);
     });
