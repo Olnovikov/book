@@ -28,9 +28,7 @@ export class ApiService {
         })
       )
       .subscribe((res: any) => {
-        this.UserStore.token = res.access_token;
-        localStorage.setItem('access_token', res.access_token);
-        this.router.navigate(['list']);
+        this.UserStore.login(res)
       });
   }
   getProfileApi() {
