@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookOperationsService } from '../stores/book-operations.store';
+import { BookOperationsService } from '../../stores/book-operations.store';
 import { SimpleModalService } from 'ngx-simple-modal';
 import { ModalComponent } from '../modal/modal.component';
 

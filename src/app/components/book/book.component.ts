@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookOperationsService } from '../stores/book-operations.store';
-import { Book } from '../interfaces/book';
-import { GenresService } from '../stores/genres.store';
+import { BookOperationsService } from '../../stores/book-operations.store';
+import { Book } from '../../interfaces/book';
+import { GenresService } from '../../stores/genres.store';
 
 @Component({
   selector: 'app-book',

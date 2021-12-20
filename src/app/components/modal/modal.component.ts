@@ -2,10 +2,10 @@
 import { SimpleModalComponent } from "ngx-simple-modal";
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookOperationsService } from '../stores/book-operations.store';
-import { Book } from '../interfaces/book';
-import { Genre } from '../interfaces/genre';
-import { GenresService } from '../stores/genres.store';
+import { BookOperationsService } from '../../stores/book-operations.store';
+import { Book } from '../../interfaces/book';
+import { Genre } from '../../interfaces/genre';
+import { GenresService } from '../../stores/genres.store';
 
 
 @Component({
