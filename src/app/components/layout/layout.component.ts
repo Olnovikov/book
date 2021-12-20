@@ -7,15 +7,22 @@ import { UserService } from '../../stores/user.store';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-
-  constructor(public router: Router, public AuthService: AuthService, public UserStore: UserService,public ApiService:ApiService) { }
+  constructor(
+    public router: Router,
+    public AuthService: AuthService,
+    public UserStore: UserService,
+    public ApiService: ApiService
+  ) {}
 
   ngOnInit(): void {
-    this.router.navigate(['list']);
-    this.ApiService.getProfileApi()
+    if (this.AuthService.token) {
+      this.router.navigate(['list']);
+      this.ApiService.getProfileApi();
+    }else{
+      this.router.navigate(['auth']);
+    }
   }
-
 }

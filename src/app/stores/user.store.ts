@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
-
 
 
 @Injectable({
@@ -13,12 +11,8 @@ export class UserService {
     null
   );
   user$: Observable<User | null> = this.userSubject.asObservable();
-  constructor( public router: Router) { }
-  getProfile(profile:Observable<User>) {
-    profile.subscribe((res) => {
-      this.setUser(res)
-    });
-  }
+  constructor() { }
+
   setUser(user: User | null) {
     this.userSubject.next(user)
   }
