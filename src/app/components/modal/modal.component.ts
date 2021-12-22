@@ -6,6 +6,7 @@ import { BookOperationsService } from '../../stores/book-operations.store';
 import { Book } from '../../interfaces/book';
 import { Genre } from '../../interfaces/genre';
 import { GenresService } from '../../stores/genres.store';
+import { ApiService } from "src/app/servises/api.service";
 
 
 @Component({
@@ -16,9 +17,9 @@ import { GenresService } from '../../stores/genres.store';
 
 export class ModalComponent extends SimpleModalComponent<any, boolean> implements OnInit {
 
-  constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { super() }
+  constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService,public ApiService:ApiService) { super() }
   createForm: FormGroup
-  genresList: Genre[] = this.genresServise.getGenres()
+  genresList: Genre[] = this.genresServise.getGenresValue()
   @Output() createdBook: EventEmitter<Book> = new EventEmitter
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class ModalComponent extends SimpleModalComponent<any, boolean> implement
   submit() {
     let bookCreateObj = this.createForm.value
     bookCreateObj.id = new Date().valueOf()
-    this.bookOperationsService.createBook(bookCreateObj)
+    this.ApiService.postBookApi(bookCreateObj)
     this.createForm.reset()
     this.close()
 

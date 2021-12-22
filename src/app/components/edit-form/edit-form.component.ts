@@ -18,7 +18,7 @@ export class EditFormComponent implements OnInit {
   ) { }
 
   editeForm: FormGroup;
-  genresList: Genre[] = this.genresServise.getGenres();
+  genresList: Genre[] = this.genresServise.getGenresValue();
 
   ngOnInit(): void {
     this.editeForm = new FormGroup({

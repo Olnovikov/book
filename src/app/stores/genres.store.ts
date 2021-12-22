@@ -7,23 +7,24 @@ import { Genre } from '../interfaces/genre';
 })
 export class GenresService {
   private genresSubject: BehaviorSubject<Genre[]> = new BehaviorSubject<Genre[]>(
-    [
-      { id: 1, name: 'повесть' },
-      { id: 2, name: 'рассказ' },
-      { id: 3, name: 'новелла' },
-      { id: 4, name: 'поэма' },
-      { id: 5, name: 'роман' },
-      { id: 6, name: 'ода' },
-    ]
+    []
   )
   genres$: Observable<Genre[]> = this.genresSubject.asObservable();
-  getGenres() {
+
+  selectedGenres:number[]
+
+  getGenres(genresApi:Genre[]){
+
+    this.genresSubject.next(genresApi)
+  }
+  getGenresValue() {
+
     return this.genresSubject.getValue()
   }
-  selectedEditGenres:number[]
+
 
   getIdsByGenres(genres:Genre[]){
-  this.selectedEditGenres=genres.map(genre=>genre.id)
+    return genres.map(genre=>genre.id)
   }
 
   getGenresById(filtredIds:number[]){

@@ -19,20 +19,7 @@ export class BookOperationsService {
   );
   searchParams$: Observable<SearchParams | undefined> = this.searchSubject.asObservable();
   private bookSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(
-    [{
-      name: 'Герой нашего времени',
-      author: 'Лермонтов',
-      year: 1842,
-      genres: [{ id: 5, name: 'роман' }],
-      id: 1,
-    },
-    {
-      name: 'Цветы для Элджернона',
-      author: 'Киз',
-      year: 1925,
-      genres: [{ id: 1, name: 'повесть' }],
-      id: 2,
-    },]
+    []
   );
   booksList$: Observable<Book[]> = this.bookSubject.asObservable();
   searchBooksList$: Observable<Book[]> = combineLatest(

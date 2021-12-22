@@ -22,5 +22,8 @@ export class LayoutComponent implements OnInit {
     }else{
       this.router.navigate(['auth']);
     }
+    this.ApiService.getGenresApi()
+    this.ApiService.getBooksApi()
   }
+
 }
