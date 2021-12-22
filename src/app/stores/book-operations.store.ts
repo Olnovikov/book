@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../interfaces/book';
@@ -10,9 +10,7 @@ import { SearchParams } from '../interfaces/searchParams';
   providedIn: 'root',
 })
 export class BookOperationsService {
-  constructor(public route: ActivatedRoute) { }
-
-  editedBook?: Book;
+  constructor(public route: ActivatedRoute,public router:Router) { }
 
   private searchSubject: BehaviorSubject<SearchParams | undefined> = new BehaviorSubject<SearchParams | undefined>(
     undefined
@@ -45,15 +43,15 @@ export class BookOperationsService {
     })
   );
 
+  setBooksList(booksList: Book[]) {
+    this.bookSubject.next(booksList);
+  }
+
   createBook(createdBook: Book) {
     let booksList = this.bookSubject.getValue();
     booksList.push(createdBook);
     this.setBooksList(booksList);
 
-  }
-
-  setBooksList(booksList: Book[]) {
-    this.bookSubject.next(booksList);
   }
 
   deleteBook(deletedBookId: number) {
@@ -66,8 +64,15 @@ export class BookOperationsService {
   findBookForEdit(findId: number) {
 
     let booksList = this.bookSubject.getValue();
-    this.editedBook = booksList.find((book) => book.id == findId);
+    return booksList.find((book) => book.id == findId)
 
+  }
+
+  editeBook(editeBook:Book){
+      let booksList:Book[] = this.getBooksListValue();
+      let editIndex = booksList.indexOf(editeBook);
+      booksList[editIndex] = editeBook;
+      this.router.navigate(['list']);
   }
 
   searchBook(searchParams?: SearchParams) {
@@ -83,7 +88,7 @@ export class BookOperationsService {
 
 
 
-  getActualBooksList() {
+  getBooksListValue() {
     return this.bookSubject.getValue()
   }
 

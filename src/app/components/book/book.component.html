@@ -5,7 +5,7 @@
   <p class="book_text">{{ book.description }}</p>
   <p class="book_text" *ngFor="let genre of book.genres">{{ genre.name }}</p>
   <button class="book_btn" (click)="goToEditePage()">Редактировать</button>
-  <button class="book_btn" (click)="this.bookOperationsService.deleteBook(this.book.id)">
+  <button class="book_btn" (click)="this.ApiService.deleteBookApi(this.book.id)">
     Удалить
   </button>
 </div>

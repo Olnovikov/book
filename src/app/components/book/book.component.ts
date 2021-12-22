@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BookOperationsService } from '../../stores/book-operations.store';
 import { Book } from '../../interfaces/book';
 import { GenresService } from '../../stores/genres.store';
+import { ApiService } from 'src/app/servises/api.service';
 
 @Component({
   selector: 'app-book',
@@ -11,8 +12,9 @@ import { GenresService } from '../../stores/genres.store';
 })
 export class BookComponent implements OnInit {
   constructor(
-    public genresServise: GenresService,
-    public bookOperationsService: BookOperationsService,
+    public genresStore: GenresService,
+    public bookOperationsStore: BookOperationsService,
+    public ApiService:ApiService,
     public router: Router
   ) { }
 
@@ -21,8 +23,8 @@ export class BookComponent implements OnInit {
   @Input() book: Book;
 
   goToEditePage() {
-    this.router.navigate(['/book', this.book.id], {});
-    this.bookOperationsService.findBookForEdit(this.book.id);
-    this.genresServise.getIdsByGenres(this.book.genres)
+    this.router.navigate(['/book', this.book.id]);
+    this.bookOperationsStore.findBookForEdit(this.book.id);
+
   }
 }

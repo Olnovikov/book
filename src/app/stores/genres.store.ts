@@ -23,8 +23,9 @@ export class GenresService {
   }
 
 
-  getIdsByGenres(genres:Genre[]){
-    return genres.map(genre=>genre.id)
+  getIdsByGenres(genres?:Genre[]){
+   let genreIds= genres?.map(genre=>genre.id)
+   return genreIds
   }
 
   getGenresById(filtredIds:number[]){

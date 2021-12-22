@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BookOperationsService } from '../../stores/book-operations.store';
 import { Genre } from '../../interfaces/genre';
 import { GenresService } from '../../stores/genres.store';
+import { ApiService } from 'src/app/servises/api.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -12,49 +13,48 @@ import { GenresService } from '../../stores/genres.store';
 })
 export class EditFormComponent implements OnInit {
   constructor(
-    public bookOperationsService: BookOperationsService,
-    public genresServise: GenresService,
-    public router: Router
-  ) { }
+    public ApiService:ApiService,
+    public bookOperationsStore: BookOperationsService,
+    public genresStore: GenresService,
+    public route: ActivatedRoute
+  ) {}
 
   editeForm: FormGroup;
-  genresList: Genre[] = this.genresServise.getGenresValue();
-
+  genresList: Genre[] = this.genresStore.getGenresValue();
+  selectedGenresIds?: number[];
+  editeBookId:number
   ngOnInit(): void {
+    this.editeBookId= this.route.snapshot.params['id'];
+    this.selectedGenresIds = this.genresStore.getIdsByGenres(
+      this.bookOperationsStore.findBookForEdit(this.editeBookId)?.genres
+    );
     this.editeForm = new FormGroup({
       name: new FormControl(
-        this.bookOperationsService.editedBook?.name,
+        this.bookOperationsStore.findBookForEdit(this.editeBookId)?.name,
         Validators.required
       ),
       author: new FormControl(
-        this.bookOperationsService.editedBook?.author,
+        this.bookOperationsStore.findBookForEdit(this.editeBookId)?.author,
         Validators.required
       ),
-      year: new FormControl(this.bookOperationsService.editedBook?.year, [
-        Validators.required,
-        Validators.pattern(/^[0-9]{4}$/),
-      ]),
+      year: new FormControl(
+        this.bookOperationsStore.findBookForEdit(this.editeBookId)?.year,
+        [Validators.required, Validators.pattern(/^[0-9]{4}$/)]
+      ),
       description: new FormControl(
-        this.bookOperationsService.editedBook?.description
+        this.bookOperationsStore.findBookForEdit(this.editeBookId)?.description
       ),
-      genres: new FormControl(
-        this.bookOperationsService.editedBook?.genres,
-        Validators.required
-      ),
+      genres: new FormControl(this.selectedGenresIds, Validators.required),
     });
-
   }
 
   submit() {
-    if (this.bookOperationsService.editedBook) {
-      let booksList = this.bookOperationsService.getActualBooksList()
-      let editIndex = booksList.indexOf(this.bookOperationsService.editedBook);
-      let bookEditeObj = this.editeForm.value;
-      bookEditeObj.genres = this.genresServise.getGenresById(bookEditeObj.genres)
-      bookEditeObj.id = this.bookOperationsService.editedBook.id;
-      booksList[editIndex] = bookEditeObj;
+    let bookEditeObj = this.editeForm.value;
+    bookEditeObj.genres = this.genresStore.getGenresById(bookEditeObj.genres);
+    bookEditeObj.id = this.route.snapshot.params['id']
+    this.ApiService.editeBookApi(bookEditeObj)
 
-    }
-    this.router.navigate(['list']);
+
+
   }
 }
