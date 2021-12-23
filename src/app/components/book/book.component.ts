@@ -14,7 +14,7 @@ export class BookComponent implements OnInit {
   constructor(
     public genresStore: GenresService,
     public bookOperationsStore: BookOperationsService,
-    public ApiService:ApiService,
+    public ApiService: ApiService,
     public router: Router
   ) { }
 
@@ -24,7 +24,6 @@ export class BookComponent implements OnInit {
 
   goToEditePage() {
     this.router.navigate(['/book', this.book.id]);
-    this.bookOperationsStore.findBookForEdit(this.book.id);
 
   }
 }

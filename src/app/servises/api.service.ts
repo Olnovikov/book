@@ -20,7 +20,7 @@ export class ApiService {
     public GenresStore: GenresService,
     private toastr: ToastrService,
     public BookOperationsStore: BookOperationsService
-  ) {}
+  ) { }
   getTokenApi(login: string, password: string) {
     return this.http
       .post('/api/auth/login', { login: login, password: password })
@@ -57,7 +57,7 @@ export class ApiService {
 
   postBookApi(createdBook: Book) {
     let createGenres = this.GenresStore.getIdsByGenres(createdBook.genres);
-    let createdBookApi: any = {...createdBook}
+    let createdBookApi: any = { ...createdBook }
     createdBookApi.genreIds = createdBookApi.genres = createGenres;
     delete createdBookApi.genres;
 
@@ -71,35 +71,38 @@ export class ApiService {
       });
   }
 
-  deleteBookApi(delId:number){
+  deleteBookApi(delId: number) {
     this.http
-      .delete( `/api/auth/books/${delId}`,{ responseType: 'text' }).subscribe(
-        res=>{
-          if ((res = `This action removes a #${delId} book`)){
+      .delete(`/api/auth/books/${delId}`, { responseType: 'text' }).subscribe(
+        res => {
+          if ((res = `This action removes a #${delId} book`)) {
             this.BookOperationsStore.deleteBook(delId)
 
           }
 
-      })
+        })
   }
 
-  editeBookApi(editeBook:Book){
+  editeBookApi(editeBook: Book) {
+    let editeGenres = this.GenresStore.getIdsByGenres(editeBook.genres);
+    let editeBookApi: any = { ...editeBook }
+    editeBookApi.genreIds = editeBookApi.genres = editeGenres;
+    delete editeBookApi.genres;
+
     this.http
-    .patch( `/api/auth/books/${editeBook.id}`,editeBook).subscribe(
-      res=>{
-        if ((res = `This action edite a #${editeBook.id} book`)){
-          this.BookOperationsStore.editeBook(editeBook)
+      .patch(`/api/auth/books/${editeBookApi.id}`, editeBookApi, { responseType: 'text' }).subscribe(
+        res => {
+
+          if ((res = `This action updates a #${editeBookApi.id} book`)) {
+            this.BookOperationsStore.editeBook(editeBook)
 
 
-        }
+          }
 
 
-    })
+        })
   }
-
-  searchBookApi(searchParams:SearchParams){
-    this.http.get<Book[]>('/api/auth/books',).subscribe((books) => {
-      this.BookOperationsStore.setBooksList(books);
-    });
+  findBookApi(findId: number) {
+    return this.http.get<Book>(`/api/auth/books/${findId}`)
   }
 }

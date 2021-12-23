@@ -11,7 +11,7 @@ import { UserService } from '../stores/user.store';
 })
 export class JwtInterceptorService implements HttpInterceptor {
 
-  constructor(public UserService: UserService, private toastr: ToastrService,public router:Router) { }
+  constructor(public UserService: UserService, private toastr: ToastrService, public router: Router) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.UserService.token) {
@@ -29,7 +29,9 @@ export class JwtInterceptorService implements HttpInterceptor {
       catchError((err) => {
         if (err.status == 401) {
           this.router.navigate(['auth']);
-          this.toastr.warning('ваша сессия завершена,пожалуйста,авторизуйтесь повторно');
+          this.UserService.token ?
+            this.toastr.warning('ваша сессия завершена,пожалуйста,авторизуйтесь повторно') :
+            this.toastr.warning('неверный логин или пароль');
         }
         return [];
       })

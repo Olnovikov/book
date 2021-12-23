@@ -13,17 +13,17 @@ export class LayoutComponent implements OnInit {
     public router: Router,
     public UserStore: UserService,
     public ApiService: ApiService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.UserStore.token) {
-      this.router.navigate(['list']);
       this.ApiService.getProfileApi();
-    }else{
+    } else {
       this.router.navigate(['auth']);
     }
-    this.ApiService.getGenresApi()
+
     this.ApiService.getBooksApi()
+    this.ApiService.getGenresApi()
   }
 
 }

@@ -13,7 +13,7 @@ export class UserService {
   );
   user$: Observable<User | null> = this.userSubject.asObservable();
   token: string | null = localStorage.getItem('access_token');
-  constructor(public router:Router) { }
+  constructor(public router: Router) { }
 
   setUser(user: User | null) {
     this.userSubject.next(user)
@@ -27,10 +27,11 @@ export class UserService {
     return this.userSubject.getValue()?.username
   }
 
-  login(tokenApi:any){
+  login(tokenApi: any) {
     this.token = tokenApi.access_token;
     localStorage.setItem('access_token', tokenApi.access_token);
-    this.router.navigate(['list']);}
+    this.router.navigate(['list']);
+  }
 
   logout() {
     this.setUser(null)

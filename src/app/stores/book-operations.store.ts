@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router} from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../interfaces/book';
 import { Genre } from '../interfaces/genre';
 import { SearchParams } from '../interfaces/searchParams';
+import { GenresService } from './genres.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookOperationsService {
-  constructor(public route: ActivatedRoute,public router:Router) { }
+  constructor(public route: ActivatedRoute, public router: Router, public GenresStore: GenresService) { }
 
   private searchSubject: BehaviorSubject<SearchParams | undefined> = new BehaviorSubject<SearchParams | undefined>(
     undefined
@@ -68,11 +70,12 @@ export class BookOperationsService {
 
   }
 
-  editeBook(editeBook:Book){
-      let booksList:Book[] = this.getBooksListValue();
-      let editIndex = booksList.indexOf(editeBook);
-      booksList[editIndex] = editeBook;
-      this.router.navigate(['list']);
+  editeBook(editeBook: Book) {
+
+    let booksList: (Book | undefined)[] = this.getBooksListValue();
+    let editIndex = booksList.indexOf(this.findBookForEdit(editeBook.id));
+    booksList[editIndex] = editeBook;
+    this.router.navigate(['list']);
   }
 
   searchBook(searchParams?: SearchParams) {
@@ -80,6 +83,9 @@ export class BookOperationsService {
 
     return searchParams
   }
+
+
+
 
   getValueFilter() {
     return this.searchSubject.getValue() ? this.searchSubject.getValue() : null

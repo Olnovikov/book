@@ -12,9 +12,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class ListComponent implements OnInit {
   constructor(public bookOperationsService: BookOperationsService, public router: Router, private simpleModalService: SimpleModalService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   showCreatedForm() {
     this.simpleModalService.addModal(ModalComponent, {}, { closeOnClickOutside: true },
