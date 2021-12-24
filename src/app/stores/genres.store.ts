@@ -11,27 +11,23 @@ export class GenresService {
   )
   genres$: Observable<Genre[]> = this.genresSubject.asObservable();
 
-  selectedGenres:number[]
+  selectedGenres: number[]
 
-  getGenres(genresApi:Genre[]){
+  getGenres(genresApi: Genre[]) {
 
     this.genresSubject.next(genresApi)
   }
-  getGenresValue() {
 
-    return this.genresSubject.getValue()
+
+  getIdsByGenres(genres?: Genre[]) {
+    let genreIds = genres?.map(genre => genre.id)
+    return genreIds
   }
 
+  getGenresById(filtredIds: number[]) {
 
-  getIdsByGenres(genres?:Genre[]){
-   let genreIds= genres?.map(genre=>genre.id)
-   return genreIds
-  }
-
-  getGenresById(filtredIds:number[]){
-
-    let genres=this.genresSubject.getValue()
-    return genres.filter( genre => filtredIds.includes( genre.id) )
+    let genres = this.genresSubject.getValue()
+    return genres.filter(genre => filtredIds.includes(genre.id))
   }
   constructor() { }
 }

@@ -34,7 +34,7 @@
     <p class="form_text">выберите жанры</p>
     <ng-select class="select" bindLabel="name" formControlName="genres" [multiple]="true"
       [(ngModel)]="selectedGenresIds">
-      <ng-option *ngFor="let genre of genresList" [value]='genre.id'>{{
+      <ng-option *ngFor="let genre of genresStore. genres$| async" [value]='genre.id'>{{
         genre.name
         }}</ng-option>
     </ng-select>

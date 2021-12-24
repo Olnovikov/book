@@ -2,9 +2,7 @@
 import { SimpleModalComponent } from "ngx-simple-modal";
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookOperationsService } from '../../stores/book-operations.store';
 import { Book } from '../../interfaces/book';
-import { Genre } from '../../interfaces/genre';
 import { GenresService } from '../../stores/genres.store';
 import { ApiService } from "src/app/servises/api.service";
 
@@ -17,9 +15,8 @@ import { ApiService } from "src/app/servises/api.service";
 
 export class ModalComponent extends SimpleModalComponent<any, boolean> implements OnInit {
 
-  constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService,public ApiService:ApiService) { super() }
+  constructor(public genresStore: GenresService, public ApiService: ApiService) { super() }
   createForm: FormGroup
-  genresList: Genre[] = this.genresServise.getGenresValue()
   @Output() createdBook: EventEmitter<Book> = new EventEmitter
 
   ngOnInit(): void {

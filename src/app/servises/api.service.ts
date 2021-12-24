@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { User } from '../interfaces/user';
@@ -43,10 +43,16 @@ export class ApiService {
     });
   }
 
-  getBooksApi() {
-    this.http.get<Book[]>('/api/auth/books').subscribe((books) => {
+  getBooksApi(searchParams?: SearchParams) {
+    const params = new HttpParams({
+      fromObject:
+        searchParams ? this.BookOperationsStore.getSearchParams(searchParams) : {}
+
+    });
+    this.http.get<Book[]>('/api/auth/books', { params: params }).subscribe((books) => {
       this.BookOperationsStore.setBooksList(books);
     });
+
   }
 
   getGenresApi() {
@@ -92,17 +98,16 @@ export class ApiService {
     this.http
       .patch(`/api/auth/books/${editeBookApi.id}`, editeBookApi, { responseType: 'text' }).subscribe(
         res => {
-
           if ((res = `This action updates a #${editeBookApi.id} book`)) {
             this.BookOperationsStore.editeBook(editeBook)
 
-
           }
-
 
         })
   }
   findBookApi(findId: number) {
     return this.http.get<Book>(`/api/auth/books/${findId}`)
   }
+
+
 }

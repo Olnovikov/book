@@ -1,8 +1,8 @@
 import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookOperationsService } from '../../stores/book-operations.store';
-import { Genre } from '../../interfaces/genre';
 import { GenresService } from '../../stores/genres.store';
+import { ApiService } from 'src/app/servises/api.service';
 
 @Component({
   selector: 'app-search-form',
@@ -10,22 +10,18 @@ import { GenresService } from '../../stores/genres.store';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  constructor(public bookOperationsService: BookOperationsService, public genresServise: GenresService) { }
+  constructor(public bookOperationsService: BookOperationsService, public genresStore: GenresService, public ApiService: ApiService) { }
   searchForm: FormGroup;
-  genresList: Genre[] = this.genresServise.getGenresValue();
-  genreDisableParam: boolean;
-  disableparam: boolean = true;
 
   ngOnInit(): void {
 
     this.searchForm = new FormGroup({
-      name: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.name : null),
-      author: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.author : null),
-      yearFrom: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.yearFrom : null, [Validators.pattern(/^[0-9]{4}$/)]),
-      yearTo: new FormControl(this.bookOperationsService.getValueFilter() ? this.bookOperationsService.getValueFilter()?.yearTo : null, Validators.pattern(/^[0-9]{4}$/)),
-      genres: new FormControl(this.bookOperationsService.getValueFilter() !== null ? this.bookOperationsService.getValueFilter()?.genres : null),
+      name: new FormControl(''),
+      author: new FormControl(''),
+      yearFrom: new FormControl('', [Validators.pattern(/^[0-9]{4}$/)]),
+      yearTo: new FormControl('', Validators.pattern(/^[0-9]{4}$/)),
+      genres: new FormControl([]),
     });
-
 
   }
 
@@ -34,6 +30,6 @@ export class SearchFormComponent implements OnInit {
   }
 
   reset() {
-    this.bookOperationsService.searchBook(undefined)
+    this.ApiService.getBooksApi(undefined)
   }
 }

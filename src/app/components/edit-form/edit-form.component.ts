@@ -20,7 +20,6 @@ export class EditFormComponent implements OnInit {
   ) { }
 
   editeForm: FormGroup;
-  genresList: Genre[] = this.genresStore.getGenresValue();
   selectedGenresIds?: number[];
 
   ngOnInit(): void {
@@ -37,7 +36,6 @@ export class EditFormComponent implements OnInit {
     this.ApiService.findBookApi(editeBookId).subscribe(
 
       book => {
-        this.genresList = this.genresStore.getGenresValue()
         this.selectedGenresIds = this.genresStore.getIdsByGenres(book.genres)
         this.editeForm.patchValue({
           name: book.name,

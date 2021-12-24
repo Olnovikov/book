@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GenresService } from 'src/app/stores/genres.store';
 import { ApiService } from '../../servises/api.service';
 import { UserService } from '../../stores/user.store';
 
@@ -12,7 +13,7 @@ export class LayoutComponent implements OnInit {
   constructor(
     public router: Router,
     public UserStore: UserService,
-    public ApiService: ApiService
+    public ApiService: ApiService,
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +25,7 @@ export class LayoutComponent implements OnInit {
 
     this.ApiService.getBooksApi()
     this.ApiService.getGenresApi()
+
   }
 
 }
