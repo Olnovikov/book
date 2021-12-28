@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookOperationsService } from '../../stores/book-operations.store';
 import { Book } from '../../interfaces/book';
-import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
 
 @Component({
@@ -12,8 +10,6 @@ import { ApiService } from 'src/app/servises/api.service';
 })
 export class BookComponent implements OnInit {
   constructor(
-    public genresStore: GenresService,
-    public bookOperationsStore: BookOperationsService,
     public ApiService: ApiService,
     public router: Router
   ) { }

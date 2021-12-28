@@ -2,7 +2,7 @@
     <app-search-form class="form searchForm"></app-search-form>
 </div>
 <div class="shelf">
-  <app-book *ngFor="let book of bookOperationsService.booksList$ | async" [book]="book"></app-book>
+  <app-book *ngFor="let book of bookOperationsStore.booksList$ | async" [book]="book"></app-book>
 </div>
 <div class="createBtn">
   <button type="button" class="btn" nz-button nzType="primary" (click)="showCreatedForm()">

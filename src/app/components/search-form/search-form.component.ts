@@ -1,6 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookOperationsService } from '../../stores/book-operations.store';
 import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
 
@@ -10,7 +9,7 @@ import { ApiService } from 'src/app/servises/api.service';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  constructor(public bookOperationsService: BookOperationsService, public genresStore: GenresService, public ApiService: ApiService) { }
+  constructor(public genresStore: GenresService, public ApiService: ApiService) { }
   searchForm: FormGroup;
 
   ngOnInit(): void {

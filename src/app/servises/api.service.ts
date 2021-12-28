@@ -21,6 +21,7 @@ export class ApiService {
     private toastr: ToastrService,
     public BookOperationsStore: BookOperationsService
   ) { }
+
   getTokenApi(login: string, password: string) {
     return this.http
       .post('/api/auth/login', { login: login, password: password })
@@ -37,6 +38,7 @@ export class ApiService {
         this.UserStore.login(res);
       });
   }
+
   getProfileApi() {
     this.http.get<User>('/api/auth/profile').subscribe((res) => {
       this.UserStore.setUser(res);
@@ -105,6 +107,7 @@ export class ApiService {
 
         })
   }
+
   findBookApi(findId: number) {
     return this.http.get<Book>(`/api/auth/books/${findId}`)
   }

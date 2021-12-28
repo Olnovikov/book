@@ -3,31 +3,29 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Genre } from '../interfaces/genre';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GenresService {
-  private genresSubject: BehaviorSubject<Genre[]> = new BehaviorSubject<Genre[]>(
-    []
-  )
+  constructor() {}
+
+  private genresSubject: BehaviorSubject<Genre[]> = new BehaviorSubject<
+    Genre[]
+  >([]);
   genres$: Observable<Genre[]> = this.genresSubject.asObservable();
 
-  selectedGenres: number[]
+  selectedGenres: number[];
 
   getGenres(genresApi: Genre[]) {
-
-    this.genresSubject.next(genresApi)
+    this.genresSubject.next(genresApi);
   }
 
-
   getIdsByGenres(genres?: Genre[]) {
-    let genreIds = genres?.map(genre => genre.id)
-    return genreIds
+    let genreIds = genres?.map((genre) => genre.id);
+    return genreIds;
   }
 
   getGenresById(filtredIds: number[]) {
-
-    let genres = this.genresSubject.getValue()
-    return genres.filter(genre => filtredIds.includes(genre.id))
+    let genres = this.genresSubject.getValue();
+    return genres.filter((genre) => filtredIds.includes(genre.id));
   }
-  constructor() { }
 }
