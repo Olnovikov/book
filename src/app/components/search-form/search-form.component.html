@@ -1,40 +1,40 @@
 <form action="" class="form" [formGroup]="searchForm" (ngSubmit)="ApiService.getBooksApi(this.searchForm.value)">
-  <div class="form-control">
-    <p class="form_text">введите название книги</p>
-    <input type="text" formControlName="name" />
-  </div>
+    <p class="text">введите название книги</p>
+    <div class="input">
+    <input nz-input nzSize="small" type="text" formControlName="name" />
+    </div>
 
-  <div class="form-control">
-    <p class="form_text">введите автора</p>
-    <input type="text" formControlName="author" />
-  </div>
+    <p class="text">введите автора</p>
+    <div class="input">
+    <input nz-input nzSize="small"  type="text" formControlName="author" />
+    </div>
 
-  <div class="form-control">
-    <p class="form_text">год книги "от"</p>
-    <input type="number" formControlName="yearFrom" />
+    <p class="text">год книги "от"</p>
+    <div class="input">
+    <input nz-input nzSize="small" type="number" formControlName="yearFrom" />
     <div class="validation" *ngIf="searchForm.get('yearFrom')?.invalid ">
-      <small class="error_text" *ngIf="searchForm.get('yearFrom')?.errors?.pattern">
+      <small class="validation__text" *ngIf="searchForm.get('yearFrom')?.errors?.pattern">
         Год должен быть в формате "уууу"</small>
     </div>
   </div>
 
-  <div class="form-control">
-    <p class="form_text">год книги "до"</p>
-    <input type="number" formControlName="yearTo" />
+  <div class="input">
+    <p class="text">год книги "до"</p>
+    <input nz-input nzSize="small" type="number" formControlName="yearTo" />
     <div class="validation" *ngIf="searchForm.get('yearTo')?.invalid ">
-      <small class="error_text" *ngIf="searchForm.get('yearTo')?.errors?.pattern">
+      <small class="validation__text" *ngIf="searchForm.get('yearTo')?.errors?.pattern">
         Год должен быть в формате "уууу"</small>
     </div>
   </div>
-  <div class="form-control">
-    <p class="form_text">выберите жанры</p>
+
+    <p class="text">выберите жанры</p>
     <ng-select class="select" formControlName="genres" [multiple]="true" bindLabel="name">
       <ng-option *ngFor="let genre of genresStore. genres$| async" [value]='genre'>{{
         genre.name }}</ng-option>
     </ng-select>
-  </div>
-  <div class="search_buttons">
-    <button class="form_btn" type="submit" [disabled]="disableCheck()">Найти книгу</button>
-    <button class="form_btn" type="reset" (click)="reset()" [disabled]="disableCheck()">Сброс</button>
+
+  <div class="searchButtons">
+    <button nz-button class="btn" type="submit" [disabled]="disableCheck()">Найти книгу</button>
+    <button nz-button class="btn" type="reset" (click)="reset()" [disabled]="disableCheck()">Сброс</button>
   </div>
 </form>

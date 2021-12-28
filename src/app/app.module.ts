@@ -19,7 +19,14 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NoAuthInfoComponent } from './components/no-auth-info/no-auth-info.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+import { NgZorroAntdModule } from './ng-zorro-antd.module';
+
+
+registerLocaleData(en);
 
 
 
@@ -51,13 +58,15 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     SimpleModalModule.forRoot({ container: document.body },),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgZorroAntdModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptorService,
     multi: true,
-  },],
+  }, { provide: NZ_I18N, useValue: en_US },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

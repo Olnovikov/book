@@ -1,21 +1,11 @@
-<div class="forms">
-  <app-search-form class="form"></app-search-form>
-
+<div class="searchForm">
+    <app-search-form class="form searchForm"></app-search-form>
 </div>
 <div class="shelf">
-  <!-- <app-book (deletedBook)="deleteBook($event)" *ngFor="let book of getList| paginate: { itemsPerPage: itemsPerPage, currentPage: page }" [book]='book'>
-</app-book> -->
-  <app-book *ngFor="let book of bookOperationsService.booksList$ | async" [book]="book">
-  </app-book>
+  <app-book *ngFor="let book of bookOperationsService.booksList$ | async" [book]="book"></app-book>
 </div>
-<div>
-  <button type="button" class="form_btn" (click)="showCreatedForm()">
-    Создать книгу
+<div class="createBtn">
+  <button type="button" class="btn" nz-button nzType="primary" (click)="showCreatedForm()">
+    <p class="btn__text">Создать книгу</p>
   </button>
 </div>
-<!-- <pagination-controls (pageChange)="page = $event"
-(pageBoundsCorrection)="page = $event"
-previousLabel=""
-nextLabel=""
-[autoHide]="true"
-></pagination-controls> -->

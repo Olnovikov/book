@@ -1,9 +1,12 @@
-.forms{
-  display: flex;
-  justify-content:space-between;
-  text-align: center;
-}
+
 .shelf{
   display: flex;
   flex-wrap: wrap;
+}
+.searchForm{
+  display: flex;
+  justify-content: left;
+}
+.createBtn{
+ text-align: center;
 }

@@ -1,17 +1,22 @@
-.form_text{
-    color:var(--main-color);
-    font-family:var(--font-family);
-  }
-.select{margin: 0 auto;}
-.edite_form{
+
+.editeForm{
     background-color: #3a928e;
-    width: 30%;
-    margin: 25px auto ;
+    width: 20%;
+    margin: 70px auto ;
     border: 1px solid black;
     border-radius: 3%;
-    height: 80vh;
+    height: 70vh;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    &__input {
+    width: 75%;
+    }
+    &__btn{
+      width: 65%;
+    }
+    &__select{
+      width: 75%;
+    }
 }

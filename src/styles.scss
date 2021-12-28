@@ -1,68 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
 @import "~@ng-select/ng-select/themes/default.theme.css";
-@import '../node_modules/ngx-simple-modal/styles/simple-modal.scss';
-@import"./variables.css";
-*{padding: 0;
-margin: 0;}
+@import "../node_modules/ngx-simple-modal/styles/simple-modal.scss";
+@import "./variables.css";
 
-input {
-  &.ng-invalid.ng-touched{border: 1px solid red;}
-  &.ng-valid.ng-touched{border: 1px solid green;}
-  resize: vertical;
-  padding:10px;
-  margin: 5px;
-  border-radius:10px;
-  border: 0.1px solid gray;
-  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-  height:1px;
+* {
+  padding: 0;
+  margin: 0;
 }
-.select{
-  width: 230px;
-  padding:10px 0px;
-}
-.form{
-padding: 10px;
-text-align: center;
 
+.input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  &.ng-valid.ng-touched {
+    border: 1px solid green;
+  }
+  width: 200px;
+  margin: 8px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.form-control{
+
+.form {
+  padding: 10px;
   text-align: center;
 }
-.form_text{
-  color: var(--main-color);
+
+.select {
+  margin: 0 auto;
+  padding: 10px 0px;
+}
+
+.text {
   font-family: var(--font-family);
   font-size: 18px;
   line-height: 32px;
+  margin-bottom: 0em;
 }
-.validation{
-  margin:7px;
-}
-.error_text{
-  color: red;
-  margin:7px;
-}
-.form_btn{
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #ffffff;
-  transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-  border-radius: 4px;
-  color: #555555;
-  display: block;
-  width: 110px;
+.btn__text {
+  font-family: var(--font-family);
   font-size: 14px;
-  text-align: center;
-  line-height: 20px;
-  margin-bottom: 10px;
-  padding: 4px 6px;
-  text-decoration: none;
+}
+
+.validation__text {
+  color: red;
+}
+.btn {
   margin-left: auto;
   margin-right: auto;
-  cursor: pointer;
-}
-.form_btn:hover, .form_btn:focus {
-  border-color: rgba(117, 163, 199, 0.6);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(117, 163, 199, 0.6);
-  outline: 0 none;
+  width: 110px;
 }

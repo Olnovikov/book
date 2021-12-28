@@ -1,7 +1,9 @@
-<div class="auth" *ngIf="UserStore.user$ | async">
+<div class="authLogo" *ngIf="UserStore.user$ | async">
     <img style="width: 40px;height:40px;"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/240px-Circle-icons-profile.svg.png"
         alt="">
-    <p class="profile_txt">{{UserStore.getUsername()}}</p>
-    <button class="out_button" (click)="UserStore.logout()">Выйти</button>
+    <p class="text">{{UserStore.getUsername()}}</p>
+    <button nz-button nzType="primary" nzSize="small" class="btn authLogo__btn" (click)="UserStore.logout()">
+       <p class="btn__text">Выйти</p>
+    </button>
 </div>

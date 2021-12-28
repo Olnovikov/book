@@ -1,11 +1,13 @@
 <div class="book">
-  <p class="book_text">{{ book.name }}</p>
-  <p class="book_text">{{ book.author }}</p>
-  <p class="book_text">{{ book.year }}</p>
-  <p class="book_text">{{ book.description }}</p>
-  <p class="book_text" *ngFor="let genre of book.genres">{{ genre.name }}</p>
-  <button class="book_btn" (click)="goToEditePage()">Редактировать</button>
-  <button class="book_btn" (click)="this.ApiService.deleteBookApi(this.book.id)">
-    Удалить
+  <p class="text">{{ book.name }}</p>
+  <p class="text">{{ book.author }}</p>
+  <p class="text">{{ book.year }}</p>
+  <p class="text">{{ book.description }}</p>
+  <p class="text" *ngFor="let genre of book.genres">{{ genre.name }}</p>
+  <button nz-button class="btn" (click)="goToEditePage()">
+     <p class="btn__text">Редактировать</p>
+  </button>
+  <button nz-button class="btn" (click)="this.ApiService.deleteBookApi(this.book.id)">
+    <p class="btn__text">Удалить</p>
   </button>
 </div>
