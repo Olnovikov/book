@@ -1,6 +1,20 @@
-.searchButtons{
-display: flex;
-justify-content: center;
-}
 
+.searchForm{
+  text-align: right;
+  &__searchBox{
+    display: flex;
+    align-items: center;
+    &__col{
+      text-align: center;
+      margin-left: 5px;
+    }
+    }
+    &__searchButtons{
+      &__btn{
+        margin-left: 5px;
+      }
+  }
+
+
+}
 

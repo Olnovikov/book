@@ -23,13 +23,13 @@
 }
 
 .form {
-  padding: 10px;
+  padding: 0px 10px;
   text-align: center;
 }
 
 .select {
   margin: 0 auto;
-  padding: 10px 0px;
+  padding: 8px 0px;
 }
 
 .text {
@@ -48,8 +48,13 @@
 }
 
 .btn {
-  margin-left: auto;
-  margin-right: auto;
-  width: 110px;
+  margin:0 auto;
+
 }
 
+.ng-select.custom .ng-select-container  {
+  min-height: 16px;
+  height: 24px;
+  border-radius: 0;
+  border: 1px solid #d9d9d9;
+}
