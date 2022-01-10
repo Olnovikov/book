@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../../interfaces/book';
 import { ApiService } from 'src/app/servises/api.service';
@@ -7,6 +7,9 @@ import { ApiService } from 'src/app/servises/api.service';
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss'],
+
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class BookComponent implements OnInit {
   constructor(

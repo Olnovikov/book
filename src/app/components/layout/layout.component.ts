@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenresService } from 'src/app/stores/genres.store';
 import { ApiService } from '../../servises/api.service';
 import { UserService } from '../../stores/user.store';
 
