@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Login } from 'src/app/store/actions/user.actions';
+import { AppState } from 'src/app/store/state/app.state';
 import { ApiService } from '../../servises/api.service';
 
 
@@ -10,7 +13,7 @@ import { ApiService } from '../../servises/api.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public ApiServise:ApiService) { }
+  constructor(public ApiServise:ApiService,private store:Store<AppState>) { }
   loginForm: FormGroup
 
   ngOnInit(): void {
@@ -21,8 +24,8 @@ export class AuthComponent implements OnInit {
   }
 
   submit() {
-
-    this.ApiServise.getTokenApi(this.loginForm.value.login, this.loginForm.value.password)
+    this.store.dispatch(new Login(this.loginForm.value))
+    // this.ApiServise.getTokenApi(this.loginForm.value.login, this.loginForm.value.password)
   }
 
 }

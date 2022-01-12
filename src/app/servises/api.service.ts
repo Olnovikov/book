@@ -34,9 +34,9 @@ export class ApiService {
           return [];
         })
       )
-      .subscribe((res: any) => {
-        this.UserStore.login(res);
-      });
+      // .subscribe((res: any) => {
+      //   this.UserStore.login(res);
+      // });
   }
 
   getProfileApi() {

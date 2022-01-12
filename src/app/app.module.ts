@@ -24,6 +24,8 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import en from '@angular/common/locales/en';
 import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/reducers/app.reducers';
 
 registerLocaleData(en);
 
@@ -38,7 +40,8 @@ registerLocaleData(en);
     AuthComponent,
     LoginHeaderComponent,
     LayoutComponent,
-    NoAuthInfoComponent
+    NoAuthInfoComponent,
+
 
 
   ],
@@ -54,7 +57,8 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     SimpleModalModule.forRoot({ container: document.body },),
     ToastrModule.forRoot(),
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    StoreModule.forRoot(appReducers)
 
   ],
   providers: [{
