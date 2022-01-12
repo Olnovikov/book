@@ -26,6 +26,8 @@ import en from '@angular/common/locales/en';
 import { NgZorroAntdModule } from './ng-zorro-antd.module';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/reducers/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/user.effects';
 
 registerLocaleData(en);
 
@@ -58,7 +60,8 @@ registerLocaleData(en);
     SimpleModalModule.forRoot({ container: document.body },),
     ToastrModule.forRoot(),
     NgZorroAntdModule,
-    StoreModule.forRoot(appReducers)
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([UserEffects])
 
   ],
   providers: [{

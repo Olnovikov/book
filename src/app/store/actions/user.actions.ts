@@ -1,20 +1,18 @@
-import { Action } from "@ngrx/store";
+import { Action, createAction } from "@ngrx/store";
 
-export enum EUserActions {
+export const Login =createAction('[User] login', function prepare(loginForm) {
+  return {
+    payload: {
+      login: loginForm.login,
+      password:loginForm.password
+    },
+  }
+})
 
-  Login='[User] login',
-  LoginSuccess='[User] loginSuccess'
-}
-
-export class Login implements Action{
-  public readonly type: EUserActions.Login
-  constructor(public payload: any){}
-}
-
-export class LoginSuccess implements Action{
-  public readonly type: EUserActions.LoginSuccess
-  constructor(public payload:any){}
-}
-
-
-export type UserActions=Login|LoginSuccess
+export const LoginSuccess =createAction('[User] loginSuccess', function prepare(user) {
+  return {
+    payload: {
+      user: user
+    },
+  }
+})
