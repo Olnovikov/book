@@ -1,12 +1,11 @@
 import { createReducer, on } from "@ngrx/store";
-import {  LoginSuccess,  } from "../actions/user.actions";
-import { initialUserState, UserState } from "../state/user.state";
+import { loginSuccess, } from "../actions/user.actions";
+import { initialUserState } from "../state/user.state";
 
-  
-export const userReducers=createReducer(
+
+export const userReducers = createReducer(
   initialUserState,
-  on(LoginSuccess, (state=>({...state,user:LoginSuccess.payload}))
-  ))
- 
- 
- 
+  on(loginSuccess, (state, action) => ({ ...state, user: action.payload }))
+)
+
+

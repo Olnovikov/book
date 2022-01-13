@@ -28,6 +28,9 @@ import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/reducers/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/user.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 registerLocaleData(en);
 
@@ -61,7 +64,11 @@ registerLocaleData(en);
     ToastrModule.forRoot(),
     NgZorroAntdModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects])
+    EffectsModule.forRoot([UserEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+
+
 
   ],
   providers: [{

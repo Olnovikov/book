@@ -1,18 +1,17 @@
-import { Action, createAction } from "@ngrx/store";
+import { createAction } from "@ngrx/store";
+import { User } from "src/app/interfaces/user";
 
-export const Login =createAction('[User] login', function prepare(loginForm) {
+export const login = createAction('[User] login', function prepare(loginForm) {
   return {
     payload: {
       login: loginForm.login,
-      password:loginForm.password
+      password: loginForm.password
     },
   }
 })
 
-export const LoginSuccess =createAction('[User] loginSuccess', function prepare(user) {
+export const loginSuccess = createAction('[User] loginSuccess', function prepare(user: User) {
   return {
-    payload: {
-      user: user
-    },
+    payload: user
   }
 })

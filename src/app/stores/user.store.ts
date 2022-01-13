@@ -27,12 +27,6 @@ export class UserService {
     return this.userSubject.getValue()?.username
   }
 
-  login(tokenApi: any) {
-    this.token = tokenApi.access_token;
-    localStorage.setItem('access_token', tokenApi.access_token);
-    this.router.navigate(['list']);
-  }
-
   logout() {
     this.setUser(null)
     this.token = null

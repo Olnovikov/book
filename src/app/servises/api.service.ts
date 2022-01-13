@@ -24,7 +24,7 @@ export class ApiService {
 
   getTokenApi(login: string, password: string) {
     return this.http
-      .post('/api/auth/login', { login: login, password: password })
+      .post<any>('/api/auth/login', { login: login, password: password })
       .pipe(
         catchError((err) => {
           console.log(err);
@@ -34,15 +34,11 @@ export class ApiService {
           return [];
         })
       )
-      // .subscribe((res: any) => {
-      //   this.UserStore.login(res);
-      // });
+
   }
 
   getProfileApi() {
-    this.http.get<User>('/api/auth/profile').subscribe((res) => {
-      this.UserStore.setUser(res);
-    });
+    return this.http.get<User>('/api/auth/profile')
   }
 
   getBooksApi(searchParams?: SearchParams) {

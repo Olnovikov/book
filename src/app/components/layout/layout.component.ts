@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { login } from 'src/app/store/actions/user.actions';
 import { ApiService } from '../../servises/api.service';
 import { UserService } from '../../stores/user.store';
 
@@ -10,6 +12,7 @@ import { UserService } from '../../stores/user.store';
 })
 export class LayoutComponent implements OnInit {
   constructor(
+    private store: Store,
     public router: Router,
     public UserStore: UserService,
     public ApiService: ApiService,
