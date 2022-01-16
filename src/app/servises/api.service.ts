@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
 import { UserService } from '../stores/user.store';
 import { ToastrService } from 'ngx-toastr';
@@ -42,15 +42,18 @@ export class ApiService {
   }
 
   getBooksApi(searchParams?: SearchParams) {
-    const params = new HttpParams({
-      fromObject:
-        searchParams ? this.BookOperationsStore.getSearchParams(searchParams) : {}
+    // const params = new HttpParams({
+    //   fromObject:
+    //     searchParams ? this.BookOperationsStore.getSearchParams(searchParams) : {}
 
-    });
-    this.http.get<Book[]>('/api/auth/books', { params: params }).subscribe((books) => {
-      this.BookOperationsStore.setBooksList(books);
-    });
-
+    // });
+    // this.http.get<Book[]>('/api/auth/books', { params: params }).subscribe((books) => {
+    //   this.BookOperationsStore.setBooksList(books);
+    // });
+    return this.http.get<Book[]>('/api/auth/books')
+    // .subscribe((books) => {
+    //   this.BookOperationsStore.setBooksList(books);
+    // });
   }
 
   getGenresApi() {
@@ -60,19 +63,28 @@ export class ApiService {
   }
 
   postBookApi(createdBook: Book) {
+
     let createGenres = this.GenresStore.getIdsByGenres(createdBook.genres);
     let createdBookApi: any = { ...createdBook }
     createdBookApi.genreIds = createdBookApi.genres = createGenres;
     delete createdBookApi.genres;
 
-    this.http
-      .post('/api/auth/books', createdBookApi, { responseType: 'text' })
-      .subscribe((res) => {
-        if ((res = 'This action adds a new book')) {
+    return this.http
+      .post('/api/auth/books', createdBookApi, { responseType: 'text' }).pipe(
+        map((res) => {
+          if (res = 'This action adds a new book') {
+            return createdBook
+          }
+          else return res
+        })
 
-          this.BookOperationsStore.createBook(createdBook);
-        }
-      });
+      )
+    // .subscribe((res) => {
+    //   if ((res = 'This action adds a new book')) {
+
+    //     this.BookOperationsStore.createBook(createdBook);
+    //   }
+    // });
   }
 
   deleteBookApi(delId: number) {

@@ -2,8 +2,8 @@
     <img style="width: 40px;height:40px;"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/240px-Circle-icons-profile.svg.png"
         alt="">
-    <p class="text">{{UserStore.getUsername()}}</p>
+    <p class="text">{{(UserStore.user$ | async)?.username}}</p>
     <button nz-button nzType="primary" nzSize="small" class="btn authLogo__btn" (click)="UserStore.logout()">
-       <p class="btn__text">Выйти</p>
+        <p class="btn__text">Выйти</p>
     </button>
 </div>

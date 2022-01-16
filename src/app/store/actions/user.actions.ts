@@ -10,7 +10,7 @@ export const login = createAction('[User] login', function prepare(loginForm) {
   }
 })
 
-export const loginSuccess = createAction('[User] loginSuccess', function prepare(user: User) {
+export const loginSuccess = createAction('[User] loginSuccess', function prepare(user: User | null) {
   return {
     payload: user
   }

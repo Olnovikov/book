@@ -1,35 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
-
+import { selectselectUser } from 'src/app/store/selectors/user.selectors'
+import { map } from 'rxjs/operators';
+import { loginSuccess } from '../store/actions/user.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
-    null
-  );
-  user$: Observable<User | null> = this.userSubject.asObservable();
-  token: string | null = localStorage.getItem('access_token');
-  constructor(public router: Router) { }
 
-  setUser(user: User | null) {
-    this.userSubject.next(user)
-  }
+  // @ts-ignore
+  user$: Observable<User | null> = this.store.select(selectselectUser)
 
-  getUserValue() {
-    return this.userSubject.getValue()
-  }
+  constructor(public router: Router, private store: Store) { }
 
-  getUsername() {
-    return this.userSubject.getValue()?.username
-  }
+
 
   logout() {
-    this.setUser(null)
-    this.token = null
+    this.store.dispatch(loginSuccess(null))
     localStorage.removeItem('access_token')
     this.router.navigate(['auth'])
   }

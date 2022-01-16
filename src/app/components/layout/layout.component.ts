@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { login } from 'src/app/store/actions/user.actions';
+import { getBooksListSuccess } from 'src/app/store/actions/books.actions';
+import { login, loginSuccess } from 'src/app/store/actions/user.actions';
+import { selectselectBooks } from 'src/app/store/selectors/books.selectors';
 import { ApiService } from '../../servises/api.service';
 import { UserService } from '../../stores/user.store';
 
@@ -19,13 +21,19 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.UserStore.token) {
-      this.ApiService.getProfileApi();
+
+    if (localStorage.getItem('access_token')) {
+      this.ApiService.getProfileApi().subscribe(
+        res => this.store.dispatch(loginSuccess(res))
+      )
+
     } else {
       this.router.navigate(['auth']);
     }
 
-    this.ApiService.getBooksApi()
+    this.ApiService.getBooksApi().subscribe(
+      res => this.store.dispatch(getBooksListSuccess(res))
+    )
     this.ApiService.getGenresApi()
 
   }

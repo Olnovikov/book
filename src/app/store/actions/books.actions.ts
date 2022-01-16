@@ -1,20 +1,22 @@
-import { Action } from "@ngrx/store";
+import { createAction } from "@ngrx/store";
 import { Book } from "src/app/interfaces/book";
 
-export enum EBooksActions {
+export const getBooksList = createAction('[Books] getBooksList')
 
-  SetBooksList='[Books] setBooksList',
-  SetBooksListSuccess='[Books] setBooksListSuccess'
+export const getBooksListSuccess = createAction('[Books] getBooksListSuccess', function prepare(booksList: Book[]) {
+  return {
+    payload: booksList
+  }
+})
 
-}
+export const createBook = createAction('[Books] createBook', function prepare(createdBook: Book) {
+  return {
+    payload: createdBook
+  }
+})
 
-export class SetBooksList implements Action{
-  public readonly type: EBooksActions.SetBooksList
-
-}
-export class SetBooksListSuccess implements Action{
-  public readonly type: EBooksActions.SetBooksListSuccess
-  constructor(public payload:Book[]){}
-
-}
-export type BooksActions=SetBooksList|SetBooksListSuccess
+export const createBookSuccess = createAction('[Books] createBookSuccess', function prepare(createdBook: Book) {
+  return {
+    payload: createdBook
+  }
+})

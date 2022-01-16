@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
+import { selectselectBooks } from '../store/selectors/books.selectors';
 import { GenresService } from './genres.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookOperationsService {
-  constructor(public router: Router, public GenresStore: GenresService) {}
+  constructor(public router: Router, public GenresStore: GenresService, private store: Store) { }
 
   private bookSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(
     []
   );
-  booksList$: Observable<Book[]> = this.bookSubject.asObservable();
+  // @ts-ignore
+  booksList$: Observable<Book[]> = this.store.select(selectselectBooks)
 
   setBooksList(booksList: Book[]) {
     this.bookSubject.next(booksList);

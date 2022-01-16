@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
-import { LoginHeaderComponent } from "src/app/components/login-header/login-header.component";
 import { User } from "src/app/interfaces/user";
 import { ApiService } from "src/app/servises/api.service";
 import { UserService } from "src/app/stores/user.store";
@@ -24,7 +23,6 @@ export class UserEffects {
     ),
     switchMap(() => this.ApiService.getProfileApi()),
     tap((user: User) => {
-      this.UserStore.setUser(user)
       this.router.navigate(['list'])
     }),
     switchMap((user: User) => of(loginSuccess(user))),

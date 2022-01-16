@@ -14,12 +14,12 @@ export class JwtInterceptorService implements HttpInterceptor {
   constructor(public UserService: UserService, private toastr: ToastrService, public router: Router) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.UserService.token) {
+    if (localStorage.getItem('access_token')) {
 
       request = request.clone({
 
         setHeaders: {
-          Authorization: `Bearer ${this.UserService.token}`
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
       });
 
@@ -29,7 +29,7 @@ export class JwtInterceptorService implements HttpInterceptor {
       catchError((err) => {
         if (err.status == 401) {
           this.router.navigate(['auth']);
-          this.UserService.token ?
+          localStorage.getItem('access_token') ?
             this.toastr.warning('ваша сессия завершена,пожалуйста,авторизуйтесь повторно') :
             this.toastr.warning('неверный логин или пароль');
         }

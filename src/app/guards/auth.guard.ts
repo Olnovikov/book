@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.UserStore.token) {
+    if (localStorage.getItem('access_token')) {
       return true
     } else {
       this.simpleModalService.addModal(NoAuthInfoComponent, {})
