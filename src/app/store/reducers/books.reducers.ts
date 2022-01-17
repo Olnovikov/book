@@ -7,6 +7,7 @@ export const booksReducers = createReducer(
   initialBooksState,
   on(getBooksListSuccess, (state, action) => ({ ...state, booksList: action.payload })),
   on(createBookSuccess, (state, action): any => {
+
     ({ ...state, booksList: state.booksList.push(action.payload) })
   })
 )

@@ -9,6 +9,7 @@ import { Genre } from '../interfaces/genre';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -63,7 +64,6 @@ export class ApiService {
   }
 
   postBookApi(createdBook: Book) {
-
     let createGenres = this.GenresStore.getIdsByGenres(createdBook.genres);
     let createdBookApi: any = { ...createdBook }
     createdBookApi.genreIds = createdBookApi.genres = createGenres;
@@ -73,6 +73,7 @@ export class ApiService {
       .post('/api/auth/books', createdBookApi, { responseType: 'text' }).pipe(
         map((res) => {
           if (res = 'This action adds a new book') {
+
             return createdBook
           }
           else return res
