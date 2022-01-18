@@ -1,7 +1,12 @@
 import { createAction } from "@ngrx/store";
 import { Book } from "src/app/interfaces/book";
+import { SearchParams } from "src/app/interfaces/searchParams";
 
-export const getBooksList = createAction('[Books] getBooksList')
+export const getBooksList = createAction('[Books] getBooksList', function prepare(searchParams?: SearchParams) {
+  return {
+    payload: searchParams
+  }
+})
 
 export const getBooksListSuccess = createAction('[Books] getBooksListSuccess', function prepare(booksList: Book[]) {
   return {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
@@ -43,14 +43,19 @@ export class ApiService {
   }
 
   getBooksApi(searchParams?: SearchParams) {
+    const params = new HttpParams({
+      fromObject:
+        searchParams ? this.BookOperationsStore.getSearchParams(searchParams) : {}
 
-    return this.http.get<Book[]>('/api/auth/books')
+    });
+    return this.http.get<Book[]>('/api/auth/books', { params: params })
+
   }
 
+
   getGenresApi() {
-    this.http.get<Genre[]>('/api/auth/genre').subscribe((genres) => {
-      this.GenresStore.getGenres(genres);
-    });
+    return this.http.get<Genre[]>('/api/auth/genre')
+
   }
 
   postBookApi(createdBook: Book) {

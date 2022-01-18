@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getBooksListSuccess } from 'src/app/store/actions/books.actions';
+import { getGenresSuccess } from 'src/app/store/actions/genres.actions';
 import { login, loginSuccess } from 'src/app/store/actions/user.actions';
 import { selectselectBooks } from 'src/app/store/selectors/books.selectors';
 import { ApiService } from '../../servises/api.service';
@@ -32,9 +33,11 @@ export class LayoutComponent implements OnInit {
     }
 
     this.ApiService.getBooksApi().subscribe(
-      res => this.store.dispatch(getBooksListSuccess(res))
+      booksList => this.store.dispatch(getBooksListSuccess(booksList))
     )
-    this.ApiService.getGenresApi()
+    this.ApiService.getGenresApi().subscribe(
+      genres => this.store.dispatch(getGenresSuccess(genres))
+    )
 
   }
 

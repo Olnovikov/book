@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, from, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
 import { selectselectBooks } from '../store/selectors/books.selectors';

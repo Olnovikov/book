@@ -32,7 +32,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   reset() {
-    this.ApiService.getBooksApi(undefined)
+    this.store.dispatch(getBooksList(undefined))
   }
 
   search(searchParams: SearchParams) {

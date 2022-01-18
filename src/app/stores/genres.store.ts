@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Genre } from '../interfaces/genre';
+import { Store } from '@ngrx/store';
+import { selectselectGenres } from '../store/selectors/genres.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenresService {
-  constructor() {}
+  constructor(private store: Store) { }
 
   private genresSubject: BehaviorSubject<Genre[]> = new BehaviorSubject<
     Genre[]
   >([]);
-  genres$: Observable<Genre[]> = this.genresSubject.asObservable();
+  // @ts-ignore
+  genres$: Observable<Genre[]> = this.store.select(selectselectGenres)
 
   selectedGenres: number[];
 

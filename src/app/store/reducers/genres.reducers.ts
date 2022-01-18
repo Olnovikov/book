@@ -1,13 +1,9 @@
-import { EGenresActions, GenresActions } from "../actions/genres.actions"
-import { GenresState, initialGenresState } from "../state/genres.state"
+import { createReducer, on } from "@ngrx/store";
+import { getGenresSuccess } from "../actions/genres.actions";
+import { initialGenresState } from "../state/genres.state";
 
-export const genresReducers =(
-  state=initialGenresState,
-  action:GenresActions):GenresState=>{
-    switch(action.type){
-      case EGenresActions.GetGenresSuccess:
-        return{...state,genres:action.payload}
-      default: return state
-    }
+export const userReducers = createReducer(
+  initialGenresState,
+  on(getGenresSuccess, (state, action) => ({ ...state, genres: action.payload }))
+)
 
-  }

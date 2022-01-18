@@ -1,21 +1,10 @@
-import { Action } from "@ngrx/store";
+import { createAction } from "@ngrx/store";
 import { Genre } from "src/app/interfaces/genre";
 
-export enum EGenresActions {
+export const getGenres = createAction('[Genres] getGenres')
 
-  GetGenres='[Genres] getGenres',
-  GetGenresSuccess='[Genres] getGenresSuccess'
-
-}
-
-export class  GetGenres implements Action{
-  public readonly type: EGenresActions.GetGenres
-
-}
-
-export class  GetGenresSuccess implements Action{
-  public readonly type: EGenresActions.GetGenresSuccess
-  constructor(public payload:Genre[]){}
-
-}
-export type GenresActions=GetGenres|GetGenresSuccess
+export const getGenresSuccess = createAction('[Genres] getGenresSuccess', function prepare(genres: Genre[]) {
+  return {
+    payload: genres
+  }
+})

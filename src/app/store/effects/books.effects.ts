@@ -20,7 +20,7 @@ export class BooksEffects {
   @Effect()
   getBooksList$ = this.actions$.pipe(
     ofType(getBooksList),
-    switchMap(() => this.ApiService.getBooksApi()),
+    switchMap((action) => this.ApiService.getBooksApi(action.payload)),
     switchMap((booksList: Book[]) => of(getBooksListSuccess(booksList)))
 
   )
