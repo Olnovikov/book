@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { selectselectUser } from 'src/app/store/selectors/user.selectors'
-import { map } from 'rxjs/operators';
 import { loginSuccess } from '../store/actions/user.actions';
 
 @Injectable({

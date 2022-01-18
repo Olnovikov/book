@@ -20,3 +20,28 @@ export const createBookSuccess = createAction('[Books] createBookSuccess', funct
     payload: createdBook
   }
 })
+
+export const deleteBook = createAction('[Books] deleteBook', function prepare(delId: number) {
+  return {
+    payload: delId
+  }
+})
+
+export const deleteBookSuccess = createAction('[Books] deleteBookSuccess', function prepare(delId: number) {
+  return {
+    payload: delId
+  }
+})
+
+export const editeBook = createAction('[Books] editeBook', function prepare(editedBook: Book) {
+  return {
+    payload: editedBook
+  }
+})
+
+export const editeBookSuccess = createAction('[Books] editeBookSuccess', function prepare(editedBook: Book) {
+  return {
+    payload: editedBook
+  }
+})
+

@@ -1,17 +1,13 @@
-<div nz-col  class="book" >
-    <p nz-row nzSpan="6" [nzJustify]="'center'"  class="text">{{ book.name }}</p>
-    <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.author }}</p>
-    <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.year }}</p>
-    <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.description }}</p>
-    <p nz-row nzSpan="6" [nzJustify]="'center'" class="text" *ngFor="let genre of book.genres">{{ genre.name }}</p>
+<div nz-col class="book">
+  <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.name }}</p>
+  <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.author }}</p>
+  <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.year }}</p>
+  <p nz-row nzSpan="6" [nzJustify]="'center'" class="text">{{ book.description }}</p>
+  <p nz-row nzSpan="6" [nzJustify]="'center'" class="text" *ngFor="let genre of book.genres">{{ genre.name }}</p>
   <button nz-button class="btn book__btn" (click)="goToEditePage()">
     <p class="btn__text">Редактировать</p>
   </button>
-  <button
-    nz-button
-    class="btn book__btn"
-    (click)="this.ApiService.deleteBookApi(this.book.id)"
-  >
+  <button nz-button class="btn book__btn" (click)="deleteBook(this.book.id)">
     <p class="btn__text">Удалить</p>
   </button>
 </div>

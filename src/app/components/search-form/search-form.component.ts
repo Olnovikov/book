@@ -2,6 +2,9 @@ import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
+import { SearchParams } from 'src/app/interfaces/searchParams';
+import { Store } from '@ngrx/store';
+import { getBooksList } from 'src/app/store/actions/books.actions';
 
 @Component({
   selector: 'app-search-form',
@@ -9,7 +12,7 @@ import { ApiService } from 'src/app/servises/api.service';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  constructor(public genresStore: GenresService, public ApiService: ApiService) { }
+  constructor(public genresStore: GenresService, public ApiService: ApiService, private store: Store) { }
   searchForm: FormGroup;
 
   ngOnInit(): void {
@@ -30,5 +33,9 @@ export class SearchFormComponent implements OnInit {
 
   reset() {
     this.ApiService.getBooksApi(undefined)
+  }
+
+  search(searchParams: SearchParams) {
+    this.store.dispatch(getBooksList(searchParams))
   }
 }

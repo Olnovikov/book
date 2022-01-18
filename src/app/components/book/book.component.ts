@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../../interfaces/book';
-import { ApiService } from 'src/app/servises/api.service';
+import { Store } from '@ngrx/store';
+import { deleteBook } from 'src/app/store/actions/books.actions';
 
 @Component({
   selector: 'app-book',
@@ -13,7 +14,7 @@ import { ApiService } from 'src/app/servises/api.service';
 })
 export class BookComponent implements OnInit {
   constructor(
-    public ApiService: ApiService,
+    private store: Store,
     public router: Router
   ) { }
 
@@ -24,5 +25,9 @@ export class BookComponent implements OnInit {
   goToEditePage() {
     this.router.navigate(['/book', this.book.id]);
 
+  }
+
+  deleteBook(delId: number) {
+    this.store.dispatch(deleteBook(delId))
   }
 }

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
+import { Store } from '@ngrx/store';
+import { editeBook } from 'src/app/store/actions/books.actions';
 
 @Component({
   selector: 'app-edit-form',
@@ -13,7 +15,8 @@ export class EditFormComponent implements OnInit {
   constructor(
     public ApiService: ApiService,
     public genresStore: GenresService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private store: Store
   ) { }
 
   editeForm: FormGroup;
@@ -53,7 +56,7 @@ export class EditFormComponent implements OnInit {
     let bookEditeObj = this.editeForm.value;
     bookEditeObj.genres = this.genresStore.getGenresById(bookEditeObj.genres);
     bookEditeObj.id = this.route.snapshot.params['id']
-    this.ApiService.editeBookApi(bookEditeObj)
+    this.store.dispatch(editeBook(bookEditeObj))
 
   }
 }

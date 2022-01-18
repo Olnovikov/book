@@ -32,7 +32,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BooksEffects } from './store/effects/books.effects';
-import { booksReducers } from './store/reducers/books.reducers';
 
 registerLocaleData(en);
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
 import { selectselectBooks } from '../store/selectors/books.selectors';
@@ -13,44 +14,10 @@ import { GenresService } from './genres.store';
 export class BookOperationsService {
   constructor(public router: Router, public GenresStore: GenresService, private store: Store) { }
 
-  private bookSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>(
-    []
-  );
   // @ts-ignore
   booksList$: Observable<Book[]> = this.store.select(selectselectBooks)
 
-  setBooksList(booksList: Book[]) {
-    this.bookSubject.next(booksList);
-  }
 
-  createBook(createdBook: Book) {
-    let booksList = this.bookSubject.getValue();
-    booksList.push(createdBook);
-    this.setBooksList(booksList);
-  }
-
-  deleteBook(deletedBookId: number) {
-    let booksList = this.bookSubject
-      .getValue()
-      .filter((book: Book) => book.id !== deletedBookId);
-    this.setBooksList(booksList);
-  }
-
-  findBookForEdit(findId: number) {
-    let booksList = this.bookSubject.getValue();
-    return booksList.find((book) => book.id == findId);
-  }
-
-  editeBook(editeBook: Book) {
-    let booksList: (Book | undefined)[] = this.getBooksListValue();
-    let editIndex = booksList.indexOf(this.findBookForEdit(editeBook.id));
-    booksList[editIndex] = editeBook;
-    this.router.navigate(['list']);
-  }
-
-  getBooksListValue() {
-    return this.bookSubject.getValue();
-  }
 
   getSearchParams(searchParams: SearchParams) {
     let searchGenres = this.GenresStore.getIdsByGenres(searchParams.genres);

@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
@@ -9,7 +9,7 @@ import { Genre } from '../interfaces/genre';
 import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
-import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -43,18 +43,8 @@ export class ApiService {
   }
 
   getBooksApi(searchParams?: SearchParams) {
-    // const params = new HttpParams({
-    //   fromObject:
-    //     searchParams ? this.BookOperationsStore.getSearchParams(searchParams) : {}
 
-    // });
-    // this.http.get<Book[]>('/api/auth/books', { params: params }).subscribe((books) => {
-    //   this.BookOperationsStore.setBooksList(books);
-    // });
     return this.http.get<Book[]>('/api/auth/books')
-    // .subscribe((books) => {
-    //   this.BookOperationsStore.setBooksList(books);
-    // });
   }
 
   getGenresApi() {
@@ -80,24 +70,22 @@ export class ApiService {
         })
 
       )
-    // .subscribe((res) => {
-    //   if ((res = 'This action adds a new book')) {
 
-    //     this.BookOperationsStore.createBook(createdBook);
-    //   }
-    // });
   }
 
   deleteBookApi(delId: number) {
-    this.http
-      .delete(`/api/auth/books/${delId}`, { responseType: 'text' }).subscribe(
-        res => {
-          if ((res = `This action removes a #${delId} book`)) {
-            this.BookOperationsStore.deleteBook(delId)
+    return this.http
+      .delete(`/api/auth/books/${delId}`, { responseType: 'text' }).pipe(
+        map((res) => {
+          if (res = `This action removes a #${delId} book`) {
 
+            return delId
           }
-
+          else return res
         })
+
+      )
+
   }
 
   editeBookApi(editeBook: Book) {
@@ -106,15 +94,18 @@ export class ApiService {
     editeBookApi.genreIds = editeBookApi.genres = editeGenres;
     delete editeBookApi.genres;
 
-    this.http
-      .patch(`/api/auth/books/${editeBookApi.id}`, editeBookApi, { responseType: 'text' }).subscribe(
-        res => {
-          if ((res = `This action updates a #${editeBookApi.id} book`)) {
-            this.BookOperationsStore.editeBook(editeBook)
+    return this.http
+      .patch(`/api/auth/books/${editeBookApi.id}`, editeBookApi, { responseType: 'text' }).pipe(
+        map((res) => {
+          if (res = `This action updates a #${editeBookApi.id} book`) {
 
+            return editeBook
           }
-
+          else return res
         })
+
+      )
+
   }
 
   findBookApi(findId: number) {
