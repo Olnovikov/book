@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Genre } from '../interfaces/genre';
 import { Store } from '@ngrx/store';
 import { selectselectGenres } from '../store/selectors/genres.selectors';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -10,17 +11,12 @@ import { selectselectGenres } from '../store/selectors/genres.selectors';
 export class GenresService {
   constructor(private store: Store) { }
 
-  private genresSubject: BehaviorSubject<Genre[]> = new BehaviorSubject<
-    Genre[]
-  >([]);
+
   // @ts-ignore
   genres$: Observable<Genre[]> = this.store.select(selectselectGenres)
 
   selectedGenres: number[];
 
-  getGenres(genresApi: Genre[]) {
-    this.genresSubject.next(genresApi);
-  }
 
   getIdsByGenres(genres?: Genre[]) {
     let genreIds = genres?.map((genre) => genre.id);
@@ -28,7 +24,11 @@ export class GenresService {
   }
 
   getGenresById(filtredIds: number[]) {
-    let genres = this.genresSubject.getValue();
-    return genres.filter((genre) => filtredIds.includes(genre.id));
+
+    return this.genres$.pipe(map(genres => genres.filter((genre) => filtredIds.includes(genre.id)))
+
+    )
+    // return genres.filter((genre) => filtredIds.includes(genre.id));
+
   }
 }

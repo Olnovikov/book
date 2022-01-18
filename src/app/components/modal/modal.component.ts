@@ -35,7 +35,6 @@ export class ModalComponent extends SimpleModalComponent<any, boolean> implement
     let bookCreateObj = this.createForm.value
     bookCreateObj.id = new Date().valueOf()
     this.store.dispatch(createBook(bookCreateObj))
-    // this.ApiService.postBookApi(bookCreateObj)
     this.createForm.reset()
     this.close()
 
