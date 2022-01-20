@@ -1,8 +1,9 @@
 import { createSelector } from "@ngrx/store"
+import { Book } from "src/app/interfaces/book"
 import { AppState } from "../state/app.state"
-import { BooksState } from "../state/books.state"
+
 const selectBooks = (state: AppState) => state.booksList
 export const selectselectBooks = createSelector(
     selectBooks,
-    (state: BooksState) => state.booksList
+    (booksList: Book[]) => booksList
 )

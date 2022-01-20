@@ -1,9 +1,10 @@
 import { createSelector } from "@ngrx/store"
+import { Genre } from "src/app/interfaces/genre"
 import { AppState } from "../state/app.state"
-import { GenresState } from "../state/genres.state"
+
 
 const selectGenres = (state: AppState) => state.genres
 export const selectselectGenres = createSelector(
     selectGenres,
-    (state: GenresState) => state.genres
+    (genres: Genre[]) => genres
 )

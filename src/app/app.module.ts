@@ -67,7 +67,7 @@ registerLocaleData(en);
     NgZorroAntdModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects, BooksEffects, GenresEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreDevtoolsModule.instrument(),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
 
 

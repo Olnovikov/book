@@ -39,6 +39,7 @@ export class LayoutComponent implements OnInit {
       genres => this.store.dispatch(getGenresSuccess(genres))
     )
 
+
   }
 
 }
