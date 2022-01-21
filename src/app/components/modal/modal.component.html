@@ -1,5 +1,5 @@
 <form action="" class="form modalForm" [formGroup]="createForm" (ngSubmit)="submit()">
-  <div class="input">
+    <div class="input">
         <p class="text">введите название книги</p>
         <input nz-input nzSize="small" type="text" formControlName="name" />
         <div class="validation" *ngIf="createForm.get('name')?.invalid && createForm.get('name')?.touched">
@@ -8,7 +8,7 @@
         </div>
     </div>
 
-   <div class="input">
+    <div class="input">
         <p class="text">введите автора</p>
         <input nz-input nzSize="small" type="text" formControlName="author" />
         <div class="validation" *ngIf="
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-     <div class="input">
+    <div class="input">
         <p class="text">введите год</p>
         <input nz-input nzSize="small" type="number" formControlName="year" />
         <div class="validation" *ngIf="createForm.get('year')?.invalid && createForm.get('year')?.touched">
@@ -34,18 +34,18 @@
         <input nz-input nzSize="small" type="text" formControlName="description" />
     </div>
 
-      <p class="text">выберите жанры</p>
-      <ng-select class="select" formControlName="genres" [multiple]="true">
-          <ng-option *ngFor="let genre of genresStore.genres$| async" [value]="genre">{{
-              genre.name}}</ng-option>
-      </ng-select>
-      <div class="validation" *ngIf="createForm.get('genres')?.invalid && createForm.get('genres')?.touched">
-          <small class="error_text" *ngIf="createForm.get('genres')?.errors?.required">
-              Поле не может быть пустым</small>
-      </div>
+    <p class="text">выберите жанры</p>
+    <ng-select class="select" formControlName="genres" [multiple]="true">
+        <ng-option *ngFor="let genre of genres$| async" [value]="genre">{{
+            genre.name}}</ng-option>
+    </ng-select>
+    <div class="validation" *ngIf="createForm.get('genres')?.invalid && createForm.get('genres')?.touched">
+        <small class="error_text" *ngIf="createForm.get('genres')?.errors?.required">
+            Поле не может быть пустым</small>
+    </div>
 
 
     <button nz-button nzType="primary" class="btn" type="submit" [disabled]="createForm.invalid">
-      <p class="btn__text">Создать книгу</p>
+        <p class="btn__text">Создать книгу</p>
     </button>
 </form>

@@ -3,14 +3,14 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { SimpleModalService } from 'ngx-simple-modal';
 import { Observable } from 'rxjs';
 import { NoAuthInfoComponent } from '../components/no-auth-info/no-auth-info.component';
-import { UserService } from '../stores/user.store';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthGuard implements CanActivate {
-  constructor(public UserStore: UserService, public router: Router, private simpleModalService: SimpleModalService) { }
+  constructor(public router: Router, private simpleModalService: SimpleModalService) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

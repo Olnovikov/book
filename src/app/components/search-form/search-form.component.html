@@ -39,7 +39,7 @@
     <div class="searchForm__searchBox__col">
       <p class="text">выберите жанры</p>
       <ng-select class="select custom" formControlName="genres" [multiple]="true" bindLabel="name">
-        <ng-option *ngFor="let genre of genresStore. genres$| async" [value]='genre'>{{
+        <ng-option *ngFor="let genre of genres$| async" [value]='genre'>{{
           genre.name }}</ng-option>
       </ng-select>
     </div>

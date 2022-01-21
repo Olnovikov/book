@@ -13,19 +13,7 @@ export class GenresService {
 
 
   // @ts-ignore
-  genres$: Observable<Genre[]> = this.store.select(selectselectGenres)
-
-  getIdsByGenres(genres?: Genre[]) {
-    let genreIds = genres?.map((genre) => genre.id);
-    return genreIds;
-  }
-
-  getGenresById(filtredIds: number[]) {
-
-    return this.genres$.pipe(map(genres => genres.filter((genre) => filtredIds.includes(genre.id)))
-
-    )
+  // genres$: Observable<Genre[]> = this.store.select(selectselectGenres)
 
 
-  }
 }

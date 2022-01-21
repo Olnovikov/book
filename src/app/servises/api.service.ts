@@ -5,9 +5,10 @@ import { User } from '../interfaces/user';
 import { ToastrService } from 'ngx-toastr';
 import { GenresService } from '../stores/genres.store';
 import { Genre } from '../interfaces/genre';
-import { BookOperationsService } from '../stores/book-operations.store';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
+import { Store } from '@ngrx/store';
+import { editeSearchParamsToApi, getIdsByGenres } from '../assistentFunctions';
 
 
 @Injectable({
@@ -18,7 +19,7 @@ export class ApiService {
     public http: HttpClient,
     public GenresStore: GenresService,
     private toastr: ToastrService,
-    public BookOperationsStore: BookOperationsService
+    private store: Store
   ) { }
 
   getTokenApi(login: string, password: string) {
@@ -43,7 +44,7 @@ export class ApiService {
   getBooksApi(searchParams?: SearchParams) {
     const params = new HttpParams({
       fromObject:
-        searchParams ? this.BookOperationsStore.getSearchParams(searchParams) : {}
+        searchParams ? editeSearchParamsToApi(searchParams) : {}
 
     });
     return this.http.get<Book[]>('/api/auth/books', { params: params })
@@ -57,7 +58,7 @@ export class ApiService {
   }
 
   postBookApi(createdBook: Book) {
-    let createGenres = this.GenresStore.getIdsByGenres(createdBook.genres);
+    let createGenres = getIdsByGenres(createdBook.genres);
     let createdBookApi: any = { ...createdBook }
     createdBookApi.genreIds = createdBookApi.genres = createGenres;
     delete createdBookApi.genres;
@@ -92,7 +93,7 @@ export class ApiService {
   }
 
   editeBookApi(editeBook: Book) {
-    let editeGenres = this.GenresStore.getIdsByGenres(editeBook.genres);
+    let editeGenres = getIdsByGenres(editeBook.genres);
     let editeBookApi: any = { ...editeBook }
     editeBookApi.genreIds = editeBookApi.genres = editeGenres;
     delete editeBookApi.genres;
@@ -115,5 +116,17 @@ export class ApiService {
     return this.http.get<Book>(`/api/auth/books/${findId}`)
   }
 
+  // editeSearchParamsToApi(searchParams: SearchParams) {
+  //   let searchGenres = this.GenresStore.getIdsByGenres(searchParams.genres);
+  //   let searchParamsApi: any = { ...searchParams };
+  //   searchParamsApi.genreIds = searchParamsApi.genres = searchGenres;
+  //   delete searchParamsApi.genres;
+  //   for (let key in searchParamsApi) {
+  //     if (searchParamsApi[key] == null) {
+  //       delete searchParamsApi[key];
+  //     }
+  //   }
+  //   return searchParamsApi;
+  // }
 
 }

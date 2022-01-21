@@ -4,6 +4,6 @@ import { initialGenresState } from "../state/genres.state";
 
 export const genresReducers = createReducer(
   initialGenresState,
-  on(getGenresSuccess, (genres, action) => genres = action.payload)
+  on(getGenresSuccess, (genres, action) => genres = action.payload),
 )
 

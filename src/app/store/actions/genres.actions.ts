@@ -8,3 +8,4 @@ export const getGenresSuccess = createAction('[Genres] getGenresSuccess', functi
     payload: genres
   }
 })
+

@@ -1,25 +1,25 @@
 <form action="" class="editeForm" [formGroup]="editeForm" (ngSubmit)="submit()">
-    <p class="text">введите название книги</p>
-    <div class="input editeForm__input">
+  <p class="text">введите название книги</p>
+  <div class="input editeForm__input">
     <input nz-input nzSize="small" type="text" formControlName="name" />
     <div class="validation" *ngIf="editeForm.get('name')?.invalid && editeForm.get('name')?.touched">
       <small class="validation__text" *ngIf="editeForm.get('name')?.errors?.required">
         Поле не может быть пустым</small>
     </div>
-    </div>
+  </div>
 
-    <p class="text">введите автора</p>
-    <div class="input editeForm__input">
+  <p class="text">введите автора</p>
+  <div class="input editeForm__input">
     <input nz-input nzSize="small" type="text" formControlName="author" />
     <div class="validation" *ngIf="
         editeForm.get('author')?.invalid && editeForm.get('author')?.touched">
       <small class="validation__text" *ngIf="editeForm.get('author')?.errors?.required">
         Поле не может быть пустым</small>
     </div>
-    </div>
+  </div>
 
-    <p class="text">введите год написания книги</p>
-    <div class="input editeForm__input">
+  <p class="text">введите год написания книги</p>
+  <div class="input editeForm__input">
     <input nz-input nzSize="small" type="number" formControlName="year" />
     <div class="validation" *ngIf="editeForm.get('year')?.invalid && editeForm.get('year')?.touched">
       <small class="validation__text" *ngIf="editeForm.get('year')?.errors?.required">
@@ -27,29 +27,29 @@
       <small class="validation__text" *ngIf="editeForm.get('year')?.errors?.pattern">
         Год должен быть в формате "уууу"</small>
     </div>
-    </div>
+  </div>
 
-    <p class="text">введите описание книги</p>
-    <div class="input editeForm__input">
+  <p class="text">введите описание книги</p>
+  <div class="input editeForm__input">
     <input nz-input nzSize="small" type="text" formControlName="description" />
-    </div>
+  </div>
 
 
-    <p class="text">выберите жанры</p>
-    <ng-select class="select editeForm__select" bindLabel="name" formControlName="genres" [multiple]="true"
-      [(ngModel)]="selectedGenresIds">
-      <ng-option *ngFor="let genre of genresStore. genres$| async" [value]='genre.id'>{{
-        genre.name
-        }}</ng-option>
-    </ng-select>
+  <p class="text">выберите жанры</p>
+  <ng-select class="select editeForm__select" bindLabel="name" formControlName="genres" [multiple]="true"
+    [(ngModel)]="selectedGenresIds">
+    <ng-option *ngFor="let genre of genres$| async" [value]='genre.id'>{{
+      genre.name
+      }}</ng-option>
+  </ng-select>
 
-    <div class="validation" *ngIf="
+  <div class="validation" *ngIf="
         editeForm.get('genres')?.invalid && editeForm.get('genres')?.touched">
-      <small class="validation__text" *ngIf="editeForm.get('genres')?.errors?.required">
-        Поле не может быть пустым</small>
-    </div>
+    <small class="validation__text" *ngIf="editeForm.get('genres')?.errors?.required">
+      Поле не может быть пустым</small>
+  </div>
 
   <button class="btn editeForm__btn" nz-button type="submit" [disabled]="editeForm.invalid">
-   <p class="btn__text">Редактировать книгу</p>
+    <p class="btn__text">Редактировать книгу</p>
   </button>
 </form>

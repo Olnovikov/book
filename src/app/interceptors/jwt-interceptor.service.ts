@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UserService } from '../stores/user.store';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtInterceptorService implements HttpInterceptor {
 
-  constructor(public UserService: UserService, private toastr: ToastrService, public router: Router) { }
+  constructor(private toastr: ToastrService, public router: Router) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (localStorage.getItem('access_token')) {

@@ -5,7 +5,6 @@ import { of } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
 import { User } from "src/app/interfaces/user";
 import { ApiService } from "src/app/servises/api.service";
-import { UserService } from "src/app/stores/user.store";
 import { login, loginSuccess } from "../actions/user.actions";
 
 
@@ -13,7 +12,7 @@ import { login, loginSuccess } from "../actions/user.actions";
   providedIn: 'root',
 })
 export class UserEffects {
-  constructor(private actions$: Actions, public ApiService: ApiService, public UserStore: UserService, public router: Router) { }
+  constructor(private actions$: Actions, public ApiService: ApiService, public router: Router) { }
   @Effect()
   login$ = this.actions$.pipe(
     ofType(login),

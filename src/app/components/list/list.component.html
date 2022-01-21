@@ -1,9 +1,8 @@
-
 <div class="searchForm">
-    <app-search-form class="form searchForm"></app-search-form>
+  <app-search-form class="form searchForm"></app-search-form>
 </div>
 <div class="shelf">
-  <app-book *ngFor="let book of bookOperationsStore.booksList$ | async" [book]="book"></app-book>
+  <app-book *ngFor="let book of booksList$ | async" [book]="book"></app-book>
 </div>
 <!-- <nz-pagination [nzPageIndex]="1" [nzTotal]="50"[nzPageSize]="3" [nzResponsive]="true"></nz-pagination> -->
 <div class="createBtn">
@@ -11,5 +10,3 @@
     <p class="btn__text">Создать книгу</p>
   </button>
 </div>
-
-

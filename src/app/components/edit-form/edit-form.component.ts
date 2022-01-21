@@ -5,6 +5,11 @@ import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
 import { Store } from '@ngrx/store';
 import { editeBook } from 'src/app/store/actions/books.actions';
+import { getGenresById, getIdsByGenres } from 'src/app/assistentFunctions';
+import { Observable } from 'rxjs';
+import { Genre } from 'src/app/interfaces/genre';
+import { selectselectGenres } from 'src/app/store/selectors/genres.selectors';
+
 
 @Component({
   selector: 'app-edit-form',
@@ -21,6 +26,8 @@ export class EditFormComponent implements OnInit {
 
   editeForm: FormGroup;
   selectedGenresIds?: number[];
+  // @ts-ignore
+  genres$: Observable<Genre[]> = this.store.select(selectselectGenres)
 
   ngOnInit(): void {
 
@@ -36,7 +43,7 @@ export class EditFormComponent implements OnInit {
     this.ApiService.findBookApi(editeBookId).subscribe(
 
       book => {
-        this.selectedGenresIds = this.genresStore.getIdsByGenres(book.genres)
+        this.selectedGenresIds = getIdsByGenres(book.genres)
         this.editeForm.patchValue({
           name: book.name,
           author: book.author,
@@ -54,7 +61,7 @@ export class EditFormComponent implements OnInit {
 
   submit() {
     let bookEditeObj = this.editeForm.value;
-    this.genresStore.getGenresById(bookEditeObj.genres).subscribe(
+    getGenresById(bookEditeObj.genres, this.store).subscribe(
       res => {
         bookEditeObj.genres = res
         bookEditeObj.id = +this.route.snapshot.params['id']

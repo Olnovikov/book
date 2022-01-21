@@ -6,7 +6,7 @@ import { getGenresSuccess } from 'src/app/store/actions/genres.actions';
 import { login, loginSuccess } from 'src/app/store/actions/user.actions';
 import { selectselectBooks } from 'src/app/store/selectors/books.selectors';
 import { ApiService } from '../../servises/api.service';
-import { UserService } from '../../stores/user.store';
+
 
 @Component({
   selector: 'app-layout',
@@ -17,7 +17,6 @@ export class LayoutComponent implements OnInit {
   constructor(
     private store: Store,
     public router: Router,
-    public UserStore: UserService,
     public ApiService: ApiService,
   ) { }
 

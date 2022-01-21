@@ -7,6 +7,9 @@ import { GenresService } from '../../stores/genres.store';
 import { ApiService } from "src/app/servises/api.service";
 import { Store } from "@ngrx/store";
 import { createBook } from "src/app/store/actions/books.actions";
+import { Observable } from "rxjs";
+import { Genre } from "src/app/interfaces/genre";
+import { selectselectGenres } from "src/app/store/selectors/genres.selectors";
 
 
 @Component({
@@ -18,6 +21,9 @@ import { createBook } from "src/app/store/actions/books.actions";
 export class ModalComponent extends SimpleModalComponent<any, boolean> implements OnInit {
 
   constructor(public genresStore: GenresService, public ApiService: ApiService, private store: Store) { super() }
+
+  // @ts-ignore
+  genres$: Observable<Genre[]> = this.store.select(selectselectGenres)
   createForm: FormGroup
   @Output() createdBook: EventEmitter<Book> = new EventEmitter
 

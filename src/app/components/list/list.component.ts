@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BookOperationsService } from '../../stores/book-operations.store';
 import { SimpleModalService } from 'ngx-simple-modal';
 import { ModalComponent } from '../modal/modal.component';
+import { Observable } from 'rxjs';
+import { Book } from 'src/app/interfaces/book';
+import { Store } from '@ngrx/store';
+import { selectselectBooks } from 'src/app/store/selectors/books.selectors';
 
 @Component({
   selector: 'app-list',
@@ -9,8 +12,10 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor(public bookOperationsStore: BookOperationsService, private simpleModalService: SimpleModalService) { }
+  constructor(private simpleModalService: SimpleModalService, private store: Store) { }
 
+  // @ts-ignore
+  booksList$: Observable<Book[]> = this.store.select(selectselectBooks)
   ngOnInit(): void { }
 
   showCreatedForm() {
