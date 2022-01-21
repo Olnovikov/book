@@ -3,7 +3,6 @@ import { SimpleModalComponent } from "ngx-simple-modal";
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../../interfaces/book';
-import { GenresService } from '../../stores/genres.store';
 import { ApiService } from "src/app/servises/api.service";
 import { Store } from "@ngrx/store";
 import { createBook } from "src/app/store/actions/books.actions";
@@ -20,7 +19,7 @@ import { selectselectGenres } from "src/app/store/selectors/genres.selectors";
 
 export class ModalComponent extends SimpleModalComponent<any, boolean> implements OnInit {
 
-  constructor(public genresStore: GenresService, public ApiService: ApiService, private store: Store) { super() }
+  constructor(public ApiService: ApiService, private store: Store) { super() }
 
   // @ts-ignore
   genres$: Observable<Genre[]> = this.store.select(selectselectGenres)

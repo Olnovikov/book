@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
 import { ToastrService } from 'ngx-toastr';
-import { GenresService } from '../stores/genres.store';
 import { Genre } from '../interfaces/genre';
 import { Book } from '../interfaces/book';
 import { SearchParams } from '../interfaces/searchParams';
@@ -17,7 +16,6 @@ import { editeSearchParamsToApi, getIdsByGenres } from '../assistentFunctions';
 export class ApiService {
   constructor(
     public http: HttpClient,
-    public GenresStore: GenresService,
     private toastr: ToastrService,
     private store: Store
   ) { }

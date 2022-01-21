@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
 import { Store } from '@ngrx/store';
 import { editeBook } from 'src/app/store/actions/books.actions';
@@ -19,7 +18,6 @@ import { selectselectGenres } from 'src/app/store/selectors/genres.selectors';
 export class EditFormComponent implements OnInit {
   constructor(
     public ApiService: ApiService,
-    public genresStore: GenresService,
     public route: ActivatedRoute,
     private store: Store
   ) { }

@@ -1,6 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GenresService } from '../../stores/genres.store';
 import { ApiService } from 'src/app/servises/api.service';
 import { SearchParams } from 'src/app/interfaces/searchParams';
 import { Store } from '@ngrx/store';
@@ -17,7 +16,7 @@ import { selectselectGenres } from 'src/app/store/selectors/genres.selectors';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  constructor(public genresStore: GenresService, public ApiService: ApiService, private store: Store) { }
+  constructor(public ApiService: ApiService, private store: Store) { }
   searchForm: FormGroup;
   // @ts-ignore
   searchParams$: Observable<SearchParams | null> = this.store.select(selectselectSearchParams)

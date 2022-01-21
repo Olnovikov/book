@@ -5,7 +5,6 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
 import { Book } from "src/app/interfaces/book";
-import { GenresService } from "src/app/stores/genres.store";
 import { ApiService } from "../../servises/api.service";
 import { createBook, createBookSuccess, deleteBook, deleteBookSuccess, editeBook, editeBookSuccess, getBooksList, getBooksListSuccess } from "../actions/books.actions";
 
@@ -15,7 +14,7 @@ import { createBook, createBookSuccess, deleteBook, deleteBookSuccess, editeBook
   providedIn: 'root',
 })
 export class BooksEffects {
-  constructor(private actions$: Actions, public ApiService: ApiService, public GenresStore: GenresService, public router: Router) { }
+  constructor(private actions$: Actions, public ApiService: ApiService, public router: Router) { }
   @Effect()
   getBooksList$ = this.actions$.pipe(
     ofType(getBooksList),
