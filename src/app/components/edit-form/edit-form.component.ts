@@ -59,7 +59,7 @@ export class EditFormComponent implements OnInit {
 
   submit() {
     let bookEditeObj = this.editeForm.value;
-    getGenresById(bookEditeObj.genres, this.store).subscribe(
+    getGenresById(bookEditeObj.genres, this.genres$).subscribe(
       res => {
         bookEditeObj.genres = res
         bookEditeObj.id = +this.route.snapshot.params['id']
